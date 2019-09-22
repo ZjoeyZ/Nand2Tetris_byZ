@@ -1,14 +1,39 @@
 import java.io.*;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
-class Assembler {
+class SymbolHandleAssembler {
     private final int A_COMMAND = 0;
     private final int C_COMMAND = 1;
     private final int L_COMMAND = 2;
+    private HashMap<String, String> symbolTable = new HashMap<String, String>(){
+        {
+            put("SP", "0");
+            put("LCL", "1");
+            put("ARG", "2");
+            put("THIS", "3");
+            put("THAT", "4");
+            put("R0", "0");
+            put("R1", "1");
+            put("R2", "2");
+            put("R3", "3");
+            put("R4", "4");
+            put("R5", "5");
+            put("R6", "6");
+            put("R7", "7");
+            put("R8", "8");
+            put("R9", "9");
+            put("R10", "10");
+            put("R11", "11");
+            put("R12", "12");
+            put("R13", "13");
+            put("R14", "14");
+            put("R15", "15");
+            put("SCREEN", "16384");
+            put("KBD", "24576");
+        }
+    };
     private final HashMap<String, String> destToBin = new HashMap<String, String>(){
         {
             put("","000");
@@ -86,7 +111,7 @@ class Assembler {
     }
 
     private int getNumber(String command) {
-        return Integer.parseInt(command.substring(1));
+        return Integer.parseInt(command);
     }
 
     private String fillWithZero(String bin) {
@@ -120,19 +145,15 @@ class Assembler {
             dest_comp_jump[0] = command.substring(0, indexEq);
             dest_comp_jump[1] = command.substring(indexEq + 1);
         }
-    return dest_comp_jump;
+        return dest_comp_jump;
     }
 
-    public void compile(String filePath) throws IOException {
+    private void firstScan(String filePath) throws IOException {
         // 准备.asm文件的读取
         BufferedReader in = new BufferedReader(new FileReader(filePath));
 
-        // 准备.hack文件的写入。注：输出文件 和输入文件在一个文件夹：
-        int indexOfDot = filePath.lastIndexOf(".");
-        BufferedWriter out = new BufferedWriter(new FileWriter(filePath.substring(0, indexOfDot) + ".hack"));
-
-        // 逐行读取汇编代码
         String command;
+        long romAddress = -1;
         while ((command = in.readLine()) != null) {
             // 代码去空行、去空格
             command = command.replace(" ", "");
@@ -149,14 +170,60 @@ class Assembler {
                 continue;
             }
 
+
+
+            if (command.contains("(") || command.contains(")")) {
+                String key = command.substring(command.indexOf("(") + 1, command.indexOf(")"));
+                String value = String.valueOf(romAddress + 1);
+                symbolTable.put(key, value);
+                // System.out.println("add new entry " + key + " : "+ value);
+                continue;
+            }
+
+            // 这条command的 ROM 地址
+            romAddress = romAddress + 1;
+        }
+        in.close();
+    }
+
+    private void secondScan(String filePath) throws IOException {
+        // 准备.asm文件的读取
+        BufferedReader in = new BufferedReader(new FileReader(filePath));
+
+        // 准备.hack文件的写入。注：输出文件 和输入文件在一个文件夹：
+        int indexOfDot = filePath.lastIndexOf(".");
+        BufferedWriter out = new BufferedWriter(new FileWriter(filePath.substring(0, indexOfDot) + ".hack"));
+
+        // 逐行读取汇编代码
+        String command;
+        long varRamAddress = 15;
+        while ((command = in.readLine()) != null) {
+            // 代码去空行、去空格
+            command = command.replace(" ", "");
+            command = command.replace("\n", "");
+            if (command.startsWith("//")) {
+                continue;
+            } // 跳过整行注释
+            if (command.contains("//")) {
+                int index = command.indexOf("/");
+                command = command.substring(0, index);
+            } // 去掉代码后方注释
+
+            if (command.contains("(")) {
+                continue;
+            }
+            if (command.equals("")) {
+                continue;
+            }
+
             // System.out.println(command);
             // 获得汇编代码是哪种类型的指令
             int type = commandType(command);
 
             // 汇编代码转机器代码
-            String bin = null;
+            String bin;
             if (type == A_COMMAND) {
-                bin = Integer.toBinaryString(getNumber(command));
+                bin = Integer.toBinaryString(getNumber(command.substring(1)));
                 bin = fillWithZero(bin);
                 //System.out.println("the bin of A_Command is " + bin);
             } else if (type == C_COMMAND) {
@@ -169,6 +236,18 @@ class Assembler {
                 String jump = jumpToBin.get(dest_comp_jump[2]);
                 bin = "111" +  comp + dest + jump;
                 // System.out.println("the bin of C_command is " + bin);
+            } else {
+                String key = command.substring(1);
+                String value = symbolTable.get(key);
+                if (value == null) {
+                    // 变量符号
+                    varRamAddress++;
+                    value = String.valueOf(varRamAddress);
+                    symbolTable.put(key, value);
+                    // System.out.println("add new variable entry " + key + " : "+ value);
+                }
+                bin = Integer.toBinaryString(getNumber(value));
+                bin = fillWithZero(bin);
             }
 
             //把 一行机器代码bin 写入文件中
@@ -177,5 +256,10 @@ class Assembler {
         out.flush();
         out.close();
         in.close();
+    }
+
+    void assemble(String filePath) throws IOException{
+        firstScan(filePath);
+        secondScan(filePath);
     }
 }
