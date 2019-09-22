@@ -85,6 +85,21 @@ class Assembler {
         return type;
     }
 
+    private int getNumber(String command) {
+        return Integer.parseInt(command.substring(1));
+    }
+
+    private String addZeroBin(String bin) {
+        int len = bin.length();
+        StringBuffer sb = new StringBuffer();
+
+        for (int i = 1; i <= (16 - len); i++) {
+            sb.append("0");
+        }
+        sb.append(bin);
+        return sb.toString();
+    }
+
     private String[] participle(String command) {
         // dest_comp_jump = [dest comp jump]
         String[] dest_comp_jump = new String[3];
@@ -108,23 +123,8 @@ class Assembler {
     return dest_comp_jump;
     }
 
-    private String addZeroBin(String bin) {
-        int len = bin.length();
-        StringBuffer sb = new StringBuffer();
-
-        for (int i = 1; i <= (16 - len); i++) {
-            sb.append("0");
-        }
-        sb.append(bin);
-        return sb.toString();
-    }
-
-    private int getNumber(String command) {
-        return Integer.parseInt(command.substring(1));
-    }
-
     public void compile(String filePath) throws IOException {
-
+        // 常见读取文件流
         FileReader fileReader = null;
         try {
             fileReader = new FileReader(filePath);
@@ -135,32 +135,34 @@ class Assembler {
 
         BufferedReader bufferReader = new BufferedReader(fileReader);
 
-        String command = null;
 
-        // 输出文件 和输入文件在一个文件夹：
+        // 创建写入文件流，输出文件 和输入文件在一个文件夹：
         int indexOfDot = filePath.lastIndexOf(".");
         BufferedWriter out = new BufferedWriter(new FileWriter(filePath.substring(0, indexOfDot) + ".hack"));
 
+        // 逐行读取汇编代码
+        String command = null;
         while ((command = bufferReader.readLine()) != null) {
-            // 去注释、去空行、去空格
+            // 代码去空行、去空格
             command = command.replace(" ", "");
             command = command.replace("\n", "");
             if (command.startsWith("//")) {
                 continue;
-            } // 去掉注释
+            } // 跳过整行注释
             if (command.contains("//")) {
                 int index = command.indexOf("/");
                 command = command.substring(0, index);
-            } // 去掉代码后注释
+            } // 去掉代码后方注释
 
             if (command.equals("")) {
                 continue;
             }
 
             // System.out.println(command);
-
+            // 获得汇编代码是哪种类型的指令
             int type = commandType(command);
 
+            // 汇编代码转机器代码
             String bin = null;
             if (type == A_COMMAND) {
                 bin = Integer.toBinaryString(getNumber(command));
@@ -177,7 +179,7 @@ class Assembler {
                 // System.out.println("the bin of C_command is " + bin);
             }
 
-            //把 bin 写入 .hack 中的一行
+            //把 一行机器代码bin 写入文件中
             out.write(bin + "\r\n");
         }
         out.flush();
