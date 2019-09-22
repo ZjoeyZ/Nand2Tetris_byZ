@@ -86,26 +86,26 @@ class Assembler {
     }
 
     private String[] participle(String command) {
-        // commands = [dest comp jump]
-        String[] commands = new String[3];
+        // dest_comp_jump = [dest comp jump]
+        String[] dest_comp_jump = new String[3];
         int indexSemi = command.indexOf(";");
         int indexEq = command.indexOf("=");
 
         if (command.contains(";")) {
-            commands[2] = command.substring(indexSemi+1);
+            dest_comp_jump[2] = command.substring(indexSemi+1);
             if (command.contains("=")) {
-                commands[0] = command.substring(0, indexEq);
-                commands[1] = command.substring(indexEq + 1, indexSemi);
+                dest_comp_jump[0] = command.substring(0, indexEq);
+                dest_comp_jump[1] = command.substring(indexEq + 1, indexSemi);
             } else {
-                commands[0] = "";
-                commands[1] = command.substring(0, indexSemi);
+                dest_comp_jump[0] = "";
+                dest_comp_jump[1] = command.substring(0, indexSemi);
             }
         } else {
-            commands[2] = "";
-            commands[0] = command.substring(0, indexEq);
-            commands[1] = command.substring(indexEq + 1);
+            dest_comp_jump[2] = "";
+            dest_comp_jump[0] = command.substring(0, indexEq);
+            dest_comp_jump[1] = command.substring(indexEq + 1);
         }
-    return commands;
+    return dest_comp_jump;
     }
 
     private String addZeroBin(String bin) {
@@ -137,9 +137,9 @@ class Assembler {
 
         String command = null;
 
-        File hackfile = new File("C:\\Users\\流川枫\\Downloads\\nand2tetris\\projects\\06\\add");
-        hackfile.createNewFile();
-        BufferedWriter out = new BufferedWriter(new FileWriter("Add.hack"));
+        // 输出文件 和输入文件在一个文件夹：
+        int indexOfDot = filePath.lastIndexOf(".");
+        BufferedWriter out = new BufferedWriter(new FileWriter(filePath.substring(0, indexOfDot) + ".hack"));
 
         while ((command = bufferReader.readLine()) != null) {
             // 去注释、去空行、去空格
@@ -165,15 +165,16 @@ class Assembler {
             if (type == A_COMMAND) {
                 bin = Integer.toBinaryString(getNumber(command));
                 bin = addZeroBin(bin);
-                System.out.println("the bin is " + bin);
+                //System.out.println("the bin of A_Command is " + bin);
             } else if (type == C_COMMAND) {
-                String[] commands = participle(command);
-                System.out.println(Arrays.toString(commands));
-                String dest = destToBin.get(commands[0]);
-                String comp = compToBin.get(commands[1]);
-                String jump = jumpToBin.get(commands[2]);
-                bin = "111" + dest + comp + jump;
-                // System.out.println("the bin is " + bin);
+                // dest_comp_jump = [dest comp jump]
+                String[] dest_comp_jump = participle(command);
+                System.out.println(Arrays.toString(dest_comp_jump));
+                String dest = destToBin.get(dest_comp_jump[0]);
+                String comp = compToBin.get(dest_comp_jump[1]);
+                String jump = jumpToBin.get(dest_comp_jump[2]);
+                bin = "111" +  comp + dest + jump;
+                // System.out.println("the bin of C_command is " + bin);
             }
 
             //把 bin 写入 .hack 中的一行
