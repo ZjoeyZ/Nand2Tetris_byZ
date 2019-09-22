@@ -89,7 +89,7 @@ class Assembler {
         return Integer.parseInt(command.substring(1));
     }
 
-    private String addZeroBin(String bin) {
+    private String fillWithZero(String bin) {
         int len = bin.length();
         StringBuffer sb = new StringBuffer();
 
@@ -124,25 +124,16 @@ class Assembler {
     }
 
     public void compile(String filePath) throws IOException {
-        // 常见读取文件流
-        FileReader fileReader = null;
-        try {
-            fileReader = new FileReader(filePath);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        assert fileReader != null;
+        // 准备读取文件
+        BufferedReader in = new BufferedReader(new FileReader(filePath));
 
-        BufferedReader bufferReader = new BufferedReader(fileReader);
-
-
-        // 创建写入文件流，输出文件 和输入文件在一个文件夹：
+        // 准备写入文件。注：输出文件 和输入文件在一个文件夹：
         int indexOfDot = filePath.lastIndexOf(".");
         BufferedWriter out = new BufferedWriter(new FileWriter(filePath.substring(0, indexOfDot) + ".hack"));
 
         // 逐行读取汇编代码
         String command = null;
-        while ((command = bufferReader.readLine()) != null) {
+        while ((command = in.readLine()) != null) {
             // 代码去空行、去空格
             command = command.replace(" ", "");
             command = command.replace("\n", "");
@@ -166,7 +157,7 @@ class Assembler {
             String bin = null;
             if (type == A_COMMAND) {
                 bin = Integer.toBinaryString(getNumber(command));
-                bin = addZeroBin(bin);
+                bin = fillWithZero(bin);
                 //System.out.println("the bin of A_Command is " + bin);
             } else if (type == C_COMMAND) {
                 // dest_comp_jump = [dest comp jump]
@@ -184,5 +175,6 @@ class Assembler {
         }
         out.flush();
         out.close();
+        in.close();
     }
 }
