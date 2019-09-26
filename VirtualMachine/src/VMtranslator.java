@@ -2,10 +2,10 @@ import java.io.*;
 import java.util.Arrays;
 
 
-class Parser {
-    private String filePath;
-    private String[] arithmetic = {"add", "sub", "neg", "eq", "gt", "lt", "and", "or", "not"};
-    private long count = 0;//全局变量用于生成eq、gt、lt的@标签，使得每组标签的名字不一样
+public class VMtranslator {
+    String filePath;
+    String[] arithmetic = {"add", "sub", "neg", "eq", "gt", "lt", "and", "or", "not"};
+    long count = 0;//全局变量用于生成eq、gt、lt的@标签，使得每组标签的名字不一样
 
     enum Type {
         C_ARITHMETIC,
@@ -16,34 +16,47 @@ class Parser {
         C_LABLE,
         C_POP,
         C_PUSH,
+        C_RETURN,
     }
 
-    Parser(String filePath) {
+    VMtranslator(String filePath) {
         this.filePath = filePath;
     }
 
-    private Type commandType(String token) {
+    Type commandType(String token) {
         if (Arrays.asList(arithmetic).contains(token)) {
             return Type.C_ARITHMETIC;
         } else if (token.equals("push")) {
             return Type.C_PUSH;
         } else if (token.equals("pop")) {
             return Type.C_POP;
+        } else if (token.equals("function")) {
+            return Type.C_FUCTION;
+        } else if (token.equals("return")) {
+            return Type.C_RETURN;
+        } else if (token.equals("call")) {
+            return Type.C_CALL;
+        } else if (token.equals("goto")) {
+            return Type.C_GOTO;
+        } else if (token.equals("if-goto")) {
+            return Type.C_IF;
         } else {
             return Type.C_LABLE;
         }
 
     }
 
-    private void writeArithmetic(BufferedWriter out, String operater) throws IOException {
+    void writeArithmetic(BufferedWriter out, String operater) throws IOException {
         String commands = null;
         switch (operater) {
             case "add":
-                commands = "@SP\r\nAM=M-1\r\nD=M\r\nA=A-1\r\n"
+                commands = "//add \r\n"
+                        + "@SP\r\nAM=M-1\r\nD=M\r\nA=A-1\r\n"
                         + "M=M+D\r\n";
                 break;
             case "sub":
-                commands = "@SP\r\nAM=M-1\r\nD=M\r\nA=A-1\r\n"
+                commands = "//sub \r\n"
+                        + "@SP\r\nAM=M-1\r\nD=M\r\nA=A-1\r\n"
                         + "M=M-D\r\n";
                 break;
             case "neg":
@@ -126,13 +139,14 @@ class Parser {
 
     }
 
-    private void writePushPop(BufferedWriter out, Type arg, String arg1, int arg2) throws IOException {
+    void writePushPop(BufferedWriter out, Type arg, String arg1, int arg2) throws IOException {
         String commands = null;
 
         if (arg == Type.C_POP) {
             switch (arg1) {
                 case "argument":
-                    commands = "@" + arg2 + "\r\n"
+                    commands = "//pop argument " + arg2 + "\r\n"
+                            + "@" + arg2 + "\r\n"
                             + "D=A\r\n"
                             + "@ARG\r\n"
                             + "A=M\r\n"
@@ -151,123 +165,124 @@ class Parser {
                             + "M=D\r\n";
                     break;
                 case "local":
-                    commands =
-                            "@" + arg2 + "\r\n"
-                                    + "D=A\r\n"
-                                    + "@LCL\r\n"
-                                    + "A=M\r\n"
-                                    + "D=A+D\r\n"
-                                    // 使用中介@R13 存储pop目标地址
-                                    + "@R13\r\n"
-                                    + "M=D\r\n"
-                                    // D get stack head value,SP decrease
-                                    + "@SP\r\n"
-                                    + "AM=M-1\r\n"
-                                    + "D=M\r\n"
-                                    // put stack value into pop 目标地址
-                                    + "@R13\r\n"
-                                    + "A=M\r\n"
-                                    + "M=D\r\n";
+                    commands = "//pop local " + arg2 + "\r\n"
+                            + "@" + arg2 + "\r\n"
+                            + "D=A\r\n"
+                            + "@LCL\r\n"
+                            + "A=M\r\n"
+                            + "D=A+D\r\n"
+                            // 使用中介@R13 存储pop目标地址
+                            + "@R13\r\n"
+                            + "M=D\r\n"
+                            // D get stack head value,SP decrease
+                            + "@SP\r\n"
+                            + "AM=M-1\r\n"
+                            + "D=M\r\n"
+                            // put stack value into pop 目标地址
+                            + "@R13\r\n"
+                            + "A=M\r\n"
+                            + "M=D\r\n";
                     break;
                 case "this":
-                    commands =
-                            "@" + arg2 + "\r\n"
-                                    + "D=A\r\n"
-                                    + "@THIS\r\n"
-                                    + "A=M\r\n"
-                                    + "D=A+D\r\n"
-                                    // 使用中介@R13 存储pop目标地址
-                                    + "@R13\r\n"
-                                    + "M=D\r\n"
-                                    // D get stack head value,SP decrease
-                                    + "@SP\r\n"
-                                    + "AM=M-1\r\n"
-                                    + "D=M\r\n"
-                                    // put stack value into pop 目标地址
-                                    + "@R13\r\n"
-                                    + "A=M\r\n"
-                                    + "M=D\r\n";
+                    commands = "//pop this " + arg2 + "\r\n"
+                            + "@" + arg2 + "\r\n"
+                            + "D=A\r\n"
+                            + "@THIS\r\n"
+                            + "A=M\r\n"
+                            + "D=A+D\r\n"
+                            // 使用中介@R13 存储pop目标地址
+                            + "@R13\r\n"
+                            + "M=D\r\n"
+                            // D get stack head value,SP decrease
+                            + "@SP\r\n"
+                            + "AM=M-1\r\n"
+                            + "D=M\r\n"
+                            // put stack value into pop 目标地址
+                            + "@R13\r\n"
+                            + "A=M\r\n"
+                            + "M=D\r\n";
                     break;
                 case "that":
-                    commands =
-                            "@" + arg2 + "\r\n"
-                                    + "D=A\r\n"
-                                    + "@THAT\r\n"
-                                    + "A=M\r\n"
-                                    + "D=A+D\r\n"
-                                    // 使用中介@R13 存储pop目标地址
-                                    + "@R13\r\n"
-                                    + "M=D\r\n"
-                                    // D get stack head value,SP decrease
-                                    + "@SP\r\n"
-                                    + "AM=M-1\r\n"
-                                    + "D=M\r\n"
-                                    // put stack value into pop 目标地址
-                                    + "@R13\r\n"
-                                    + "A=M\r\n"
-                                    + "M=D\r\n";
+                    commands = "//pop that " + arg2 + "\r\n"
+                            + "@" + arg2 + "\r\n"
+                            + "D=A\r\n"
+                            + "@THAT\r\n"
+                            + "A=M\r\n"
+                            + "D=A+D\r\n"
+                            // 使用中介@R13 存储pop目标地址
+                            + "@R13\r\n"
+                            + "M=D\r\n"
+                            // D get stack head value,SP decrease
+                            + "@SP\r\n"
+                            + "AM=M-1\r\n"
+                            + "D=M\r\n"
+                            // put stack value into pop 目标地址
+                            + "@R13\r\n"
+                            + "A=M\r\n"
+                            + "M=D\r\n";
                     break;
                 case "temp":
-                    commands =
-                            "@" + arg2 + "\r\n"
-                                    + "D=A\r\n"
-                                    + "@5\r\n"
-                                    + "D=A+D\r\n"
-                                    // 使用中介@R13 存储pop目标地址
-                                    + "@R13\r\n"
-                                    + "M=D\r\n"
-                                    // D get stack head value,SP decrease
-                                    + "@SP\r\n"
-                                    + "AM=M-1\r\n"
-                                    + "D=M\r\n"
-                                    // put stack value into pop 目标地址
-                                    + "@R13\r\n"
-                                    + "A=M\r\n"
-                                    + "M=D\r\n";
+                    commands = "//pop temp " + arg2 + "\r\n"
+                            + "@" + arg2 + "\r\n"
+                            + "D=A\r\n"
+                            + "@5\r\n"
+                            + "D=A+D\r\n"
+                            // 使用中介@R13 存储pop目标地址
+                            + "@R13\r\n"
+                            + "M=D\r\n"
+                            // D get stack head value,SP decrease
+                            + "@SP\r\n"
+                            + "AM=M-1\r\n"
+                            + "D=M\r\n"
+                            // put stack value into pop 目标地址
+                            + "@R13\r\n"
+                            + "A=M\r\n"
+                            + "M=D\r\n";
                     break;
                 case "pointer":
-                    commands =
+                    commands = "//pop pointer " + arg2 + "\r\n"
                             // get pointer address
-                            "@" + arg2 + "\r\n"
-                                    + "D=A\r\n"
-                                    + "@3\r\n"
-                                    + "D=A+D\r\n"
-                                    // 使用中介@R13 存储pop目标地址
-                                    + "@R13\r\n"
-                                    + "M=D\r\n"
-                                    // D get stack head value,SP decrease
-                                    + "@SP\r\n"
-                                    + "AM=M-1\r\n"
-                                    + "D=M\r\n"
-                                    // put stack value into pop 目标地址
-                                    + "@R13\r\n"
-                                    + "A=M\r\n"
-                                    + "M=D\r\n";
+                            + "@" + arg2 + "\r\n"
+                            + "D=A\r\n"
+                            + "@3\r\n"
+                            + "D=A+D\r\n"
+                            // 使用中介@R13 存储pop目标地址
+                            + "@R13\r\n"
+                            + "M=D\r\n"
+                            // D get stack head value,SP decrease
+                            + "@SP\r\n"
+                            + "AM=M-1\r\n"
+                            + "D=M\r\n"
+                            // put stack value into pop 目标地址
+                            + "@R13\r\n"
+                            + "A=M\r\n"
+                            + "M=D\r\n";
                     break;
                 case "static":
-                    commands =
+                    commands = "//pop static " + arg2 + "\r\n"
                             // get pointer address
-                            "@" + arg2 + "\r\n"
-                                    + "D=A\r\n"
-                                    + "@16\r\n"
-                                    + "D=A+D\r\n"
-                                    // 使用中介@R13 存储pop目标地址
-                                    + "@R13\r\n"
-                                    + "M=D\r\n"
-                                    // D get stack head value,SP decrease
-                                    + "@SP\r\n"
-                                    + "AM=M-1\r\n"
-                                    + "D=M\r\n"
-                                    // put stack value into pop 目标地址
-                                    + "@R13\r\n"
-                                    + "A=M\r\n"
-                                    + "M=D\r\n";
+                            + "@" + arg2 + "\r\n"
+                            + "D=A\r\n"
+                            + "@16\r\n"
+                            + "D=A+D\r\n"
+                            // 使用中介@R13 存储pop目标地址
+                            + "@R13\r\n"
+                            + "M=D\r\n"
+                            // D get stack head value,SP decrease
+                            + "@SP\r\n"
+                            + "AM=M-1\r\n"
+                            + "D=M\r\n"
+                            // put stack value into pop 目标地址
+                            + "@R13\r\n"
+                            + "A=M\r\n"
+                            + "M=D\r\n";
                     break;
             }
         } else if (arg == Type.C_PUSH) {
             switch (arg1) {
                 case "constant":
-                    commands = "@" + arg2 + "\r\n"
+                    commands = "//push constant " + arg2 + "\r\n"
+                            + "@" + arg2 + "\r\n"
                             + "D=A\r\n"
                             + "@SP\r\n"
                             + "A=M\r\n"
@@ -276,7 +291,8 @@ class Parser {
                             + "M=M+1\r\n";
                     break;
                 case "argument":
-                    commands = "@" + arg2 + "\r\n"
+                    commands = "//push argument " + arg2 + "\r\n"
+                            + "@" + arg2 + "\r\n"
                             + "D=A\r\n"
                             + "@ARG\r\n"
                             + "A=M\r\n"
@@ -291,103 +307,103 @@ class Parser {
                             + "M=M+1\r\n";
                     break;
                 case "local":
-                    commands =
+                    commands = "//push local " + arg2 + "\r\n"
                             // D = [base + arg2]
-                            "@" + arg2 + "\r\n"
-                                    + "D=A\r\n"
-                                    + "@LCL\r\n"
-                                    + "A=M\r\n"
-                                    + "A=A+D\r\n"
-                                    + "D=M\r\n"
-                                    // put D into stack
-                                    + "@SP\r\n"
-                                    + "A=M\r\n"
-                                    + "M=D\r\n"
-                                    // SP increase
-                                    + "@SP\r\n"
-                                    + "M=M+1\r\n";
+                            + "@" + arg2 + "\r\n"
+                            + "D=A\r\n"
+                            + "@LCL\r\n"
+                            + "A=M\r\n"
+                            + "A=A+D\r\n"
+                            + "D=M\r\n"
+                            // put D into stack
+                            + "@SP\r\n"
+                            + "A=M\r\n"
+                            + "M=D\r\n"
+                            // SP increase
+                            + "@SP\r\n"
+                            + "M=M+1\r\n";
                     break;
                 case "this":
-                    commands =
+                    commands = "//push this " + arg2 + "\r\n"
                             // D = [base + arg2]
-                            "@" + arg2 + "\r\n"
-                                    + "D=A\r\n"
-                                    + "@THIS\r\n"
-                                    + "A=M\r\n"
-                                    + "A=A+D\r\n"
-                                    + "D=M\r\n"
-                                    // put D into stack
-                                    + "@SP\r\n"
-                                    + "A=M\r\n"
-                                    + "M=D\r\n"
-                                    // SP increase
-                                    + "@SP\r\n"
-                                    + "M=M+1\r\n";
+                            + "@" + arg2 + "\r\n"
+                            + "D=A\r\n"
+                            + "@THIS\r\n"
+                            + "A=M\r\n"
+                            + "A=A+D\r\n"
+                            + "D=M\r\n"
+                            // put D into stack
+                            + "@SP\r\n"
+                            + "A=M\r\n"
+                            + "M=D\r\n"
+                            // SP increase
+                            + "@SP\r\n"
+                            + "M=M+1\r\n";
                     break;
                 case "that":
-                    commands =
+                    commands = "//push that " + arg2 + "\r\n"
                             // D = [[base] + arg2]
-                            "@" + arg2 + "\r\n"
-                                    + "D=A\r\n"
-                                    + "@THAT\r\n"
-                                    + "A=M\r\n"
-                                    + "A=A+D\r\n"
-                                    + "D=M\r\n"
-                                    // put D into stack
-                                    + "@SP\r\n"
-                                    + "A=M\r\n"
-                                    + "M=D\r\n"
-                                    // SP increase
-                                    + "@SP\r\n"
-                                    + "M=M+1\r\n";
+                            + "@" + arg2 + "\r\n"
+                            + "D=A\r\n"
+                            + "@THAT\r\n"
+                            + "A=M\r\n"
+                            + "A=A+D\r\n"
+                            + "D=M\r\n"
+                            // put D into stack
+                            + "@SP\r\n"
+                            + "A=M\r\n"
+                            + "M=D\r\n"
+                            // SP increase
+                            + "@SP\r\n"
+                            + "M=M+1\r\n";
                     break;
                 case "temp":
-                    commands =
+                    commands = "//push temp " + arg2 + "\r\n"
                             // D = [base + arg2]
-                            "@" + arg2 + "\r\n"
-                                    + "D=A\r\n"
-                                    + "@5\r\n"
-                                    + "A=A+D\r\n"
-                                    + "D=M\r\n"
-                                    // put D into stack
-                                    + "@SP\r\n"
-                                    + "A=M\r\n"
-                                    + "M=D\r\n"
-                                    // SP increase
-                                    + "@SP\r\n"
-                                    + "M=M+1\r\n";
+                            + "@" + arg2 + "\r\n"
+                            + "D=A\r\n"
+                            + "@5\r\n"
+                            + "A=A+D\r\n"
+                            + "D=M\r\n"
+                            // put D into stack
+                            + "@SP\r\n"
+                            + "A=M\r\n"
+                            + "M=D\r\n"
+                            // SP increase
+                            + "@SP\r\n"
+                            + "M=M+1\r\n";
                     break;
                 case "pointer":
-                    commands =
+                    commands = "//push poiner " + arg2 + "\r\n"
                             // get pointer address
-                            "@" + arg2 + "\r\n"
-                                    + "D=A\r\n"
-                                    + "@3\r\n"
-                                    + "A=A+D\r\n"
-                                    + "D=M\r\n"
-                                    // put D into stack
-                                    + "@SP\r\n"
-                                    + "A=M\r\n"
-                                    + "M=D\r\n"
-                                    // SP increase
-                                    + "@SP\r\n"
-                                    + "M=M+1\r\n";
+                            + "@" + arg2 + "\r\n"
+                            + "D=A\r\n"
+                            + "@3\r\n"
+                            + "A=A+D\r\n"
+                            + "D=M\r\n"
+                            // put D into stack
+                            + "@SP\r\n"
+                            + "A=M\r\n"
+                            + "M=D\r\n"
+                            // SP increase
+                            + "@SP\r\n"
+                            + "M=M+1\r\n";
                     break;
                 case "static":
-                    commands =
+                    commands = "//push static " + arg2 + "\r\n"
                             // get pointer address
-                            "@" + arg2 + "\r\n"
-                                    + "D=A\r\n"
-                                    + "@16\r\n"
-                                    + "A=A+D\r\n"
-                                    + "D=M\r\n"
-                                    // put D into stack
-                                    + "@SP\r\n"
-                                    + "A=M\r\n"
-                                    + "M=D\r\n"
-                                    // SP increase
-                                    + "@SP\r\n"
-                                    + "M=M+1\r\n";
+                            + "@" + arg2 + "\r\n"
+                            + "D=A\r\n"
+                            + "@16\r\n"
+                            + "A=A+D\r\n"
+                            + "D=M\r\n"
+                            // put D into stack
+                            + "@SP\r\n"
+                            + "A=M\r\n"
+                            + "M=D\r\n"
+                            // SP increase
+                            + "@SP\r\n"
+                            + "M=M+1\r\n";
                     break;
             }
         }
@@ -428,20 +444,18 @@ class Parser {
                 // add or sub ...
                 args[0] = tokens[0];
                 writeArithmetic(out, (String) args[0]);
-            } else if (type == Type.C_PUSH || type == Type.C_POP ||
-                    type == Type.C_FUCTION || type == Type.C_CALL) {
+            } else if (type == Type.C_PUSH || type == Type.C_POP) {
                 args[0] = type;
                 args[1] = tokens[1];
                 args[2] = Integer.parseInt(tokens[2]);
                 writePushPop(out, (Type) args[0], (String) args[1], (int) args[2]);
+            } else {
+                break;
             }
             System.out.println("the tokens are " + args[0] + " " + args[1] + " " + args[2]);
         }
         in.close();
         out.close();
     }
-
-
-
 }
 
