@@ -124,7 +124,7 @@ public class FullVMtranslator extends VMtranslator{
         String commands = null;
         // jmp
         commands = "@" + arg + "\r\n"
-                + "0;jmp\r\n";
+                + "0;JMP\r\n";
         out.write(commands);
     }
 
