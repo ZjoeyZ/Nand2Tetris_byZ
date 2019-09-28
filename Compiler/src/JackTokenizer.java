@@ -1,7 +1,4 @@
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.math.BigDecimal;
 import java.util.*;
 
@@ -10,7 +7,6 @@ public class JackTokenizer {
     private BufferedReader br;
     private ArrayList<String> files = new ArrayList<>();
     private int fileIdx = 0;
-
     private HashMap<String, String> keyWordsAndSymbols = new HashMap<String, String>() {{
         put("class", "keyword");
         put("method", "keyword");
@@ -122,6 +118,7 @@ public class JackTokenizer {
             if (line.endsWith("*/")) {
                 continue;
             }
+
             //surround ';' '(' ')' '.' [] -with space
             // ignore < > * + | &
             line = line.replaceAll("\\(", " ( ");
@@ -137,7 +134,9 @@ public class JackTokenizer {
             line = line.replaceAll("//.*", "").trim();
             if (line.length() == 0)
                 continue;
-
+            if (line.startsWith("*")) {
+                continue;
+            }
             return line;
         }
     }
@@ -192,13 +191,13 @@ public class JackTokenizer {
         switch (type) {
             case "symbol":
                 if (token.equals("<")) {
-                    token = "&lt";
+                    token = "&lt;";
                 }
                 if (token.equals(">")) {
-                    token = "&gt";
+                    token = "&gt;";
                 }
                 if (token.equals("&")) {
-                    token =  "&amp";
+                    token =  "&amp;";
                 }
                 return "<symbol> " + token + " </symbol>";
             case "keyword":
@@ -208,16 +207,18 @@ public class JackTokenizer {
             case "integerConstant":
                 return "<integerConstant> " + token + " </integerConstant>";
             case "StringConstant":
-                return "<stringConstant> " + token + " </stringConstant>";
+                return "<stringConstant> " + token.substring(1, token.length() - 1) + " </stringConstant>";
         }
         System.out.println(type + ":" + token);
         return "error";
     }
 
     public static void main(String[] args) {
-        JackTokenizer jk = new JackTokenizer("C:\\Users\\流川枫\\Downloads\\nand2tetris\\projects\\10\\ExpressionLessSquare\\Main.jack");
+        JackTokenizer jk = new JackTokenizer("C:\\Users\\流川枫\\Downloads\\nand2tetris\\projects\\10\\Square\\SquareGame.jack");
 
         try {
+            // BufferedWriter out = new BufferedWriter(new FileWriter("C:\\Users\\流川枫\\Downloads\\nand2tetris\\projects\\10\\myanwser\\");
+
             System.out.println("<tokens>");
 
             while (true) {
