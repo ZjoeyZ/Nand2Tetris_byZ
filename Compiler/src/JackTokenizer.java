@@ -2,6 +2,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.*;
 
 
@@ -10,7 +11,7 @@ public class JackTokenizer {
     private ArrayList<String> files = new ArrayList<>();
     private int fileIdx = 0;
 
-    private HashMap<String, String> keyWords = new HashMap<String, String>() {{
+    private HashMap<String, String> keyWordsAndSymbols = new HashMap<String, String>() {{
         put("class", "keyword");
         put("method", "keyword");
         put("constructor", "keyword");
@@ -32,8 +33,6 @@ public class JackTokenizer {
         put("false", "keyword");
         put("null", "keyword");
         put("this", "keyword");
-    }};
-    private HashMap<String, String> symbols = new HashMap<String, String>() {{
         put("(", "symbol");
         put(")", "symbol");
         put("[", "symbol");
@@ -44,10 +43,16 @@ public class JackTokenizer {
         put(";", "symbol");
         put("=", "symbol");
         put(".", "symbol");
-        put("", "symbol");
+        put("+", "symbol");
+        put("-", "symbol");
         put("*", "symbol");
+        put("/", "symbol");
+        put("&", "symbol");
+        put("|", "symbol");
+        put("~", "symbol");
+        put("<", "symbol");
+        put(">", "symbol");
     }};
-
 
     public JackTokenizer(String path) {
         File file = new File(path);
@@ -137,38 +142,84 @@ public class JackTokenizer {
         }
     }
 
+    public static boolean isNumeric(String str) {
+        String bigStr;
+        try {
+            bigStr = new BigDecimal(str).toString();
+        } catch (Exception e) {
+            return false;//异常 说明包含非数字。
+        }
+        return true;
+    }
+
     private ListIterator<String> getTokens(String line) {
-        ArrayList<String> tokens = new ArrayList<>();
         // 如果有一个字符串，要先单独取出字符串
+        // 并且放入合适的位置, 留一个 ",然后用字符串 replace 它
+        String subString = null;
         if (line.contains("\"")) {
             int index1 = line.indexOf("\"");
             int index2 = line.lastIndexOf("\"");
-            String sub = line.substring(index1, index2 + 1);
-            tokens.add(sub);
-            line = line.substring(0, index1) + line.substring(index2 + 1);
+            subString = line.substring(index1, index2 + 1);
+            line = line.substring(0, index1) + line.substring(index2);
+            line = line.replace("\"", " \" ");
         }
 
         String[] String = line.split("\\s+");
-        ArrayList<String> splitTokens = new ArrayList<String>(Arrays.asList(String));
-        tokens.addAll(splitTokens);
+        ArrayList<String> tokens = new ArrayList<String>(Arrays.asList(String));
+
+        if (subString != null) {
+            tokens.set(tokens.indexOf("\""), subString);
+        }
+
         return tokens.listIterator();
     }
 
-
     private String tokenType(String token) {
-
-
-        return token;
+        if (keyWordsAndSymbols.containsKey(token)) {
+            return keyWordsAndSymbols.get(token);
+        }
+        if (isNumeric(token)) {
+            return "integerConstant";
+        }
+        if (token.contains("\"")) {
+            return "StringConstant";
+        } else {
+            return "identifier";
+        }
     }
 
-    private String getXmlUnit() {
-        String unit = null;
-        return unit;
+    private String getXmlUnit(String type, String token) {
+        switch (type) {
+            case "symbol":
+                if (token.equals("<")) {
+                    token = "&lt";
+                }
+                if (token.equals(">")) {
+                    token = "&gt";
+                }
+                if (token.equals("&")) {
+                    token =  "&amp";
+                }
+                return "<symbol> " + token + " </symbol>";
+            case "keyword":
+                return "<keyword> " + token + " </keyword>";
+            case "identifier":
+                return "<identifier> " + token + " </identifier>";
+            case "integerConstant":
+                return "<integerConstant> " + token + " </integerConstant>";
+            case "StringConstant":
+                return "<stringConstant> " + token + " </stringConstant>";
+        }
+        System.out.println(type + ":" + token);
+        return "error";
     }
 
     public static void main(String[] args) {
-        JackTokenizer jk = new JackTokenizer("C:\\Users\\流川枫\\Downloads\\nand2tetris\\projects\\10\\Square\\Main.jack");
+        JackTokenizer jk = new JackTokenizer("C:\\Users\\流川枫\\Downloads\\nand2tetris\\projects\\10\\ExpressionLessSquare\\Main.jack");
+
         try {
+            System.out.println("<tokens>");
+
             while (true) {
                 String line = jk.nextLine();
                 if (line == null) {
@@ -179,10 +230,12 @@ public class JackTokenizer {
                 while (tokens.hasNext()) {
                     String token = tokens.next();
                     String type = jk.tokenType(token);
-//                    String xmlUnit = jk.getXmlUnit();
-                    System.out.println(token);
+                    String xmlUnit = jk.getXmlUnit(type, token);
+                    System.out.println(xmlUnit);
                 }
             }
+            System.out.println("</tokens>");
+
         } catch (Exception e) {
             e.printStackTrace();
         }
