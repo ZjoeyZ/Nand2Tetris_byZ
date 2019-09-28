@@ -13,8 +13,40 @@ public class JackTokenizer {
     private HashMap<String, String> keyWords = new HashMap<String, String>() {{
         put("class", "keyword");
         put("method", "keyword");
+        put("constructor", "keyword");
+        put("function", "keyword");
+        put("int", "keyword");
+        put("boolean", "keyword");
+        put("char", "keyword");
+        put("void", "keyword");
+        put("var", "keyword");
+        put("static", "keyword");
+        put("field", "keyword");
+        put("let", "keyword");
+        put("do", "keyword");
+        put("if", "keyword");
+        put("else", "keyword");
+        put("while", "keyword");
+        put("return", "keyword");
+        put("true", "keyword");
+        put("false", "keyword");
+        put("null", "keyword");
+        put("this", "keyword");
     }};
-
+    private HashMap<String, String> symbols = new HashMap<String, String>() {{
+        put("(", "symbol");
+        put(")", "symbol");
+        put("[", "symbol");
+        put("]", "symbol");
+        put("{", "symbol");
+        put("}", "symbol");
+        put(",", "symbol");
+        put(";", "symbol");
+        put("=", "symbol");
+        put(".", "symbol");
+        put("", "symbol");
+        put("*", "symbol");
+    }};
 
 
     public JackTokenizer(String path) {
@@ -85,13 +117,17 @@ public class JackTokenizer {
             if (line.endsWith("*/")) {
                 continue;
             }
-            //surround ';' '(' ')' '.' with space
+            //surround ';' '(' ')' '.' [] -with space
+            // ignore < > * + | &
             line = line.replaceAll("\\(", " ( ");
             line = line.replaceAll("\\)", " ) ");
             line = line.replaceAll("\\.", " . ");
             line = line.replaceAll(";", " ; ");
             line = line.replaceAll("\\[", " [ ");
             line = line.replaceAll("]", " ] ");
+            line = line.replaceAll("-", " - ");
+            line = line.replaceAll("~", " ~ ");
+            line = line.replaceAll(",", " , ");
 
             line = line.replaceAll("//.*", "").trim();
             if (line.length() == 0)
@@ -131,7 +167,7 @@ public class JackTokenizer {
     }
 
     public static void main(String[] args) {
-        JackTokenizer jk = new JackTokenizer("C:\\Users\\流川枫\\Downloads\\nand2tetris\\projects\\10\\ArrayTest");
+        JackTokenizer jk = new JackTokenizer("C:\\Users\\流川枫\\Downloads\\nand2tetris\\projects\\10\\Square\\Main.jack");
         try {
             while (true) {
                 String line = jk.nextLine();
