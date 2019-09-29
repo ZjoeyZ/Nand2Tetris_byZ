@@ -5,15 +5,24 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.security.cert.TrustAnchor;
 import java.util.*;
+
+import static sun.management.Agent.error;
 
 public class JackParser {
     private BufferedReader br;
     private ArrayList<String> files = new ArrayList<>();
     private int fileIdx = 0;
-    private Iterator<String> tokens = new ArrayList<String>().iterator();
+
     private String line = null;
-    private HashMap<String, String> keyWordsAndSymbols = new HashMap<String, String>() {{
+    private ListIterator<String> tokens = new ArrayList<String>().listIterator();
+    private String token = null;
+    private String type = null;
+    private String xmlUnit = null;
+    private String blankSpace = "  ";
+
+    private static HashMap<String, String> keyWords = new HashMap<String, String>() {{
         put("class", "keyword");
         put("method", "keyword");
         put("constructor", "keyword");
@@ -35,6 +44,8 @@ public class JackParser {
         put("false", "keyword");
         put("null", "keyword");
         put("this", "keyword");
+    }};
+    private static HashMap<String, String> symbols = new HashMap<String, String>() {{
         put("(", "symbol");
         put(")", "symbol");
         put("[", "symbol");
@@ -199,8 +210,11 @@ public class JackParser {
     }
 
     public String tokenType(String token) {
-        if (keyWordsAndSymbols.containsKey(token)) {
-            return keyWordsAndSymbols.get(token);
+        if (keyWords.containsKey(token)) {
+            return "keyword";
+        }
+        if (symbols.containsKey(token)) {
+            return "symbol";
         }
         if (isNumeric(token)) {
             return "integerConstant";
@@ -212,7 +226,17 @@ public class JackParser {
         }
     }
 
-    public String getXmlUnit(String type, String token) {
+    private void advance() throws IOException {
+        if (hasMoreTokens()) {
+            token = tokens.next();
+            type = tokenType(token);
+            updateXmlUnit();
+        } else {
+            throw new IllegalStateException("No more tokens");
+        }
+    }
+
+    public void updateXmlUnit() {
         switch (type) {
             case "symbol":
                 if ("<".equals(token)) {
@@ -224,40 +248,144 @@ public class JackParser {
                 if ("&".equals(token)) {
                     token = "&amp;";
                 }
-                return "<symbol> " + token + " </symbol>";
+                xmlUnit = "<symbol> " + token + " </symbol>";
+                break;
             case "keyword":
-                return "<keyword> " + token + " </keyword>";
+                xmlUnit = "<keyword> " + token + " </keyword>";
+                break;
             case "identifier":
-                return "<identifier> " + token + " </identifier>";
+                xmlUnit = "<identifier> " + token + " </identifier>";
+                break;
             case "integerConstant":
-                return "<integerConstant> " + token + " </integerConstant>";
+                xmlUnit = "<integerConstant> " + token + " </integerConstant>";
+                break;
             case "StringConstant":
-                return "<stringConstant> " + token.substring(1, token.length() - 1) + " </stringConstant>";
+                xmlUnit = "<stringConstant> " + token.substring(1, token.length() - 1) + " </stringConstant>";
+                break;
             default:
                 System.out.println(type + ":" + token);
-                return "error";
+                xmlUnit = "error";
         }
     }
 
     public static void main(String[] args) {
-        JackParser jk = new JackParser("C:\\Users\\流川枫\\Downloads\\nand2tetris\\projects\\10\\Square\\SquareGame.jack");
+        JackParser jk = new JackParser("C:\\Users\\流川枫\\Downloads\\nand2tetris\\projects\\10\\Square\\Square.jack");
 
         try {
             // BufferedWriter out = new BufferedWriter(new FileWriter("C:\\Users\\流川枫\\Downloads\\nand2tetris\\projects\\10\\myanwser\\");
+            jk.compileClass();
 
-            System.out.println("<tokens>");
-            while (jk.hasMoreTokens()) {
-                String token = jk.tokens.next();
-                String type = jk.tokenType(token);
-                String xmlUnit = jk.getXmlUnit(type, token);
-                System.out.println(xmlUnit);
-
-            }
-            System.out.println("</tokens>");
-
-        } catch (Exception e) {
+        } catch (
+                Exception e) {
             e.printStackTrace();
         }
+
     }
 
+    private void compileClass() throws IOException {
+        System.out.println("<class>");
+
+        advance();
+        if (!"keyword".equals(type)) {
+            error("class");
+        }
+        System.out.println(blankSpace + xmlUnit);
+
+        advance();
+        if (!"identifier".equals(type)) {
+            error("className");
+        }
+        System.out.println(blankSpace + xmlUnit);
+
+        advance();
+        if (!"{".equals(token)) {
+            error("require {");
+        }
+        System.out.println(blankSpace + xmlUnit);
+
+        compileClassVarDec();
+        compileSubroutine();
+
+        advance();
+        if (!"}".equals(token)) {
+            error("require }");
+        }
+        System.out.println(blankSpace + xmlUnit);
+
+
+        System.out.println("</class>");
+    }
+
+    private void compileClassVarDec() throws IOException {
+        advance();
+        if (!"static".equals(token) && !"field".equals(token)) {
+            token = tokens.previous();
+            return;
+        }
+
+        System.out.println(blankSpace + "<classVarDec>");
+        blankSpace = blankSpace + "  ";
+
+        while (!";".equals(token) ) {
+            System.out.println(blankSpace + xmlUnit);
+            advance();
+        }
+
+        System.out.println(blankSpace + xmlUnit);
+
+        blankSpace = blankSpace.substring(2);
+        System.out.println(blankSpace + "</classVarDec>");
+
+        compileClassVarDec();
+    }
+
+    private void compileSubroutine() throws IOException {
+        advance();
+        if (!"constructor".equals(token) && !"method".equals(token) && "function".equals(token)) {
+            tokens.previous();
+            return;
+        }
+
+        System.out.println(blankSpace + "<subroutineDec>");
+
+        blankSpace = blankSpace + "  ";
+        System.out.println(blankSpace + xmlUnit);
+
+        advance();
+        System.out.println(blankSpace + xmlUnit);
+
+        advance();
+        System.out.println(blankSpace + xmlUnit);
+
+        advance();
+        System.out.println(blankSpace + xmlUnit);
+
+        compileParameterList();
+
+        advance();
+        System.out.println(blankSpace + xmlUnit);
+
+
+        blankSpace = blankSpace.substring(2);
+        System.out.println(blankSpace + "</subroutineDec>");
+
+        compileClassVarDec();
+
+    }
+
+    private void compileParameterList() throws IOException {
+        advance();
+        System.out.println(blankSpace + "<parameterList>");
+        blankSpace = blankSpace + "  ";
+
+        while (!")".equals(token)) {
+            System.out.println(blankSpace + xmlUnit);
+            advance();
+        }
+        tokens.previous();
+        blankSpace = blankSpace.substring(2);
+
+        System.out.println(blankSpace + "</parameterList>");
+
+    }
 }
