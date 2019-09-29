@@ -1,12 +1,18 @@
-import java.io.*;
+import jdk.nashorn.internal.runtime.arrays.ArrayLikeIterator;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.*;
 
-
-public class JackTokenizer {
+public class JackParser {
     private BufferedReader br;
     private ArrayList<String> files = new ArrayList<>();
     private int fileIdx = 0;
+    private Iterator<String> tokens = new ArrayList<String>().iterator();
+    private String line = null;
     private HashMap<String, String> keyWordsAndSymbols = new HashMap<String, String>() {{
         put("class", "keyword");
         put("method", "keyword");
@@ -50,7 +56,7 @@ public class JackTokenizer {
         put(">", "symbol");
     }};
 
-    public JackTokenizer(String path) {
+    public JackParser(String path) {
         File file = new File(path);
 
         if (file.isFile()) {
@@ -75,8 +81,9 @@ public class JackTokenizer {
                 br = new BufferedReader(new FileReader(files.get(fileIdx)));
                 fileIdx += 1;
                 return true;
-            } else
+            } else {
                 return false;
+            }
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -85,8 +92,9 @@ public class JackTokenizer {
 
     private void close() {
         try {
-            if (br != null)
+            if (br != null) {
                 br.close();
+            }
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -132,8 +140,9 @@ public class JackTokenizer {
             line = line.replaceAll(",", " , ");
 
             line = line.replaceAll("//.*", "").trim();
-            if (line.length() == 0)
+            if (line.length() == 0) {
                 continue;
+            }
             if (line.startsWith("*")) {
                 continue;
             }
@@ -141,17 +150,19 @@ public class JackTokenizer {
         }
     }
 
+
     public static boolean isNumeric(String str) {
         String bigStr;
         try {
             bigStr = new BigDecimal(str).toString();
         } catch (Exception e) {
-            return false;//异常 说明包含非数字。
+            //异常 说明包含非数字。
+            return false;
         }
         return true;
     }
 
-    public ListIterator<String> getTokens(String line) {
+    public ListIterator<String> getTokens() {
         // 如果有一个字符串，要先单独取出字符串
         // 并且放入合适的位置, 留一个 ",然后用字符串 replace 它
         String subString = null;
@@ -163,14 +174,28 @@ public class JackTokenizer {
             line = line.replace("\"", " \" ");
         }
 
-        String[] String = line.split("\\s+");
-        ArrayList<String> tokens = new ArrayList<String>(Arrays.asList(String));
+        String[] strings = line.split("\\s+");
+        ArrayList<String> tokens = new ArrayList<>(Arrays.asList(strings));
 
         if (subString != null) {
             tokens.set(tokens.indexOf("\""), subString);
         }
 
         return tokens.listIterator();
+    }
+
+    private boolean hasMoreTokens() throws IOException {
+        if (tokens.hasNext()) {
+            return true;
+        } else {
+            line = this.nextLine();
+            if (line == null) {
+                return false;
+            } else {
+                tokens = this.getTokens();
+                return true;
+            }
+        }
     }
 
     public String tokenType(String token) {
@@ -190,14 +215,14 @@ public class JackTokenizer {
     public String getXmlUnit(String type, String token) {
         switch (type) {
             case "symbol":
-                if (token.equals("<")) {
+                if ("<".equals(token)) {
                     token = "&lt;";
                 }
-                if (token.equals(">")) {
+                if (">".equals(token)) {
                     token = "&gt;";
                 }
-                if (token.equals("&")) {
-                    token =  "&amp;";
+                if ("&".equals(token)) {
+                    token = "&amp;";
                 }
                 return "<symbol> " + token + " </symbol>";
             case "keyword":
@@ -208,32 +233,25 @@ public class JackTokenizer {
                 return "<integerConstant> " + token + " </integerConstant>";
             case "StringConstant":
                 return "<stringConstant> " + token.substring(1, token.length() - 1) + " </stringConstant>";
+            default:
+                System.out.println(type + ":" + token);
+                return "error";
         }
-        System.out.println(type + ":" + token);
-        return "error";
     }
 
     public static void main(String[] args) {
-        JackTokenizer jk = new JackTokenizer("C:\\Users\\流川枫\\Downloads\\nand2tetris\\projects\\10\\Square\\SquareGame.jack");
+        JackParser jk = new JackParser("C:\\Users\\流川枫\\Downloads\\nand2tetris\\projects\\10\\Square\\SquareGame.jack");
 
         try {
             // BufferedWriter out = new BufferedWriter(new FileWriter("C:\\Users\\流川枫\\Downloads\\nand2tetris\\projects\\10\\myanwser\\");
 
             System.out.println("<tokens>");
+            while (jk.hasMoreTokens()) {
+                String token = jk.tokens.next();
+                String type = jk.tokenType(token);
+                String xmlUnit = jk.getXmlUnit(type, token);
+                System.out.println(xmlUnit);
 
-            while (true) {
-                String line = jk.nextLine();
-                if (line == null) {
-                    break;
-                }
-
-                ListIterator<String> tokens = jk.getTokens(line);
-                while (tokens.hasNext()) {
-                    String token = tokens.next();
-                    String type = jk.tokenType(token);
-                    String xmlUnit = jk.getXmlUnit(type, token);
-                    System.out.println(xmlUnit);
-                }
             }
             System.out.println("</tokens>");
 
