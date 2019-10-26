@@ -1,3 +1,4 @@
+// 利用大量String.split()方法进行分词获得token，效率不高，处理注释和字符串类型的Token很麻烦，可以把算法改成自动机那样一个字符一个字符地读入，更好。
 import java.io.*;
 import java.math.BigDecimal;
 import java.util.*;
