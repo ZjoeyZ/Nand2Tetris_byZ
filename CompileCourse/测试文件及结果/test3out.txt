@@ -1,0 +1,1649 @@
+tokens are:
+(class,Class)
+line:4	number:1
+(Square,Identifier)
+line:4	number:2
+({,LeftCurly)
+line:4	number:3
+(field,Field)
+line:6	number:1
+(int,Int)
+line:6	number:2
+(x,Identifier)
+line:6	number:3
+(,,Comma)
+line:6	number:4
+(y,Identifier)
+line:6	number:5
+(;,SemiColon)
+line:6	number:6
+(field,Field)
+line:7	number:1
+(int,Int)
+line:7	number:2
+(size,Identifier)
+line:7	number:3
+(;,SemiColon)
+line:7	number:4
+(constructor,Constructor)
+line:9	number:1
+(Square,Identifier)
+line:9	number:2
+(new,Identifier)
+line:9	number:3
+((,LeftParen)
+line:9	number:4
+(int,Int)
+line:9	number:5
+(Ax,Identifier)
+line:9	number:6
+(,,Comma)
+line:9	number:7
+(int,Int)
+line:9	number:8
+(Ay,Identifier)
+line:9	number:9
+(,,Comma)
+line:9	number:10
+(int,Int)
+line:9	number:11
+(Asize,Identifier)
+line:9	number:12
+(),RightParen)
+line:9	number:13
+({,LeftCurly)
+line:9	number:14
+(let,Let)
+line:10	number:1
+(x,Identifier)
+line:10	number:2
+(=,Assignment)
+line:10	number:3
+(Ax,Identifier)
+line:10	number:4
+(;,SemiColon)
+line:10	number:5
+(let,Let)
+line:11	number:1
+(y,Identifier)
+line:11	number:2
+(=,Assignment)
+line:11	number:3
+(Ay,Identifier)
+line:11	number:4
+(;,SemiColon)
+line:11	number:5
+(let,Let)
+line:12	number:1
+(size,Identifier)
+line:12	number:2
+(=,Assignment)
+line:12	number:3
+(Asize,Identifier)
+line:12	number:4
+(;,SemiColon)
+line:12	number:5
+(do,Do)
+line:13	number:1
+(draw,Identifier)
+line:13	number:2
+((,LeftParen)
+line:13	number:3
+(),RightParen)
+line:13	number:4
+(;,SemiColon)
+line:13	number:5
+(return,Return)
+line:14	number:1
+(x,Identifier)
+line:14	number:2
+(;,SemiColon)
+line:14	number:3
+(},RightCurly)
+line:15	number:1
+(method,Method)
+line:17	number:1
+(void,Void)
+line:17	number:2
+(dispose,Identifier)
+line:17	number:3
+((,LeftParen)
+line:17	number:4
+(),RightParen)
+line:17	number:5
+({,LeftCurly)
+line:17	number:6
+(do,Do)
+line:18	number:1
+(Memory,Identifier)
+line:18	number:2
+(.,Dot)
+line:18	number:3
+(deAlloc,Identifier)
+line:18	number:4
+((,LeftParen)
+line:18	number:5
+(this,This)
+line:18	number:6
+(),RightParen)
+line:18	number:7
+(;,SemiColon)
+line:18	number:8
+(return,Return)
+line:19	number:1
+(;,SemiColon)
+line:19	number:2
+(},RightCurly)
+line:20	number:1
+(method,Method)
+line:22	number:1
+(void,Void)
+line:22	number:2
+(draw,Identifier)
+line:22	number:3
+((,LeftParen)
+line:22	number:4
+(),RightParen)
+line:22	number:5
+({,LeftCurly)
+line:22	number:6
+(do,Do)
+line:23	number:1
+(Screen,Identifier)
+line:23	number:2
+(.,Dot)
+line:23	number:3
+(setColor,Identifier)
+line:23	number:4
+((,LeftParen)
+line:23	number:5
+(x,Identifier)
+line:23	number:6
+(),RightParen)
+line:23	number:7
+(;,SemiColon)
+line:23	number:8
+(do,Do)
+line:24	number:1
+(Screen,Identifier)
+line:24	number:2
+(.,Dot)
+line:24	number:3
+(drawRectangle,Identifier)
+line:24	number:4
+((,LeftParen)
+line:24	number:5
+(x,Identifier)
+line:24	number:6
+(,,Comma)
+line:24	number:7
+(y,Identifier)
+line:24	number:8
+(,,Comma)
+line:24	number:9
+(x,Identifier)
+line:24	number:10
+(,,Comma)
+line:24	number:11
+(y,Identifier)
+line:24	number:12
+(),RightParen)
+line:24	number:13
+(;,SemiColon)
+line:24	number:14
+(return,Return)
+line:25	number:1
+(;,SemiColon)
+line:25	number:2
+(},RightCurly)
+line:26	number:1
+(method,Method)
+line:28	number:1
+(void,Void)
+line:28	number:2
+(erase,Identifier)
+line:28	number:3
+((,LeftParen)
+line:28	number:4
+(),RightParen)
+line:28	number:5
+({,LeftCurly)
+line:28	number:6
+(do,Do)
+line:29	number:1
+(Screen,Identifier)
+line:29	number:2
+(.,Dot)
+line:29	number:3
+(setColor,Identifier)
+line:29	number:4
+((,LeftParen)
+line:29	number:5
+(x,Identifier)
+line:29	number:6
+(),RightParen)
+line:29	number:7
+(;,SemiColon)
+line:29	number:8
+(do,Do)
+line:30	number:1
+(Screen,Identifier)
+line:30	number:2
+(.,Dot)
+line:30	number:3
+(drawRectangle,Identifier)
+line:30	number:4
+((,LeftParen)
+line:30	number:5
+(x,Identifier)
+line:30	number:6
+(,,Comma)
+line:30	number:7
+(y,Identifier)
+line:30	number:8
+(,,Comma)
+line:30	number:9
+(x,Identifier)
+line:30	number:10
+(,,Comma)
+line:30	number:11
+(y,Identifier)
+line:30	number:12
+(),RightParen)
+line:30	number:13
+(;,SemiColon)
+line:30	number:14
+(return,Return)
+line:31	number:1
+(;,SemiColon)
+line:31	number:2
+(},RightCurly)
+line:32	number:1
+(method,Method)
+line:34	number:1
+(void,Void)
+line:34	number:2
+(incSize,Identifier)
+line:34	number:3
+((,LeftParen)
+line:34	number:4
+(),RightParen)
+line:34	number:5
+({,LeftCurly)
+line:34	number:6
+(if,If)
+line:35	number:1
+((,LeftParen)
+line:35	number:2
+(x,Identifier)
+line:35	number:3
+(),RightParen)
+line:35	number:4
+({,LeftCurly)
+line:35	number:5
+(do,Do)
+line:36	number:1
+(erase,Identifier)
+line:36	number:2
+((,LeftParen)
+line:36	number:3
+(),RightParen)
+line:36	number:4
+(;,SemiColon)
+line:36	number:5
+(let,Let)
+line:37	number:1
+(size,Identifier)
+line:37	number:2
+(=,Assignment)
+line:37	number:3
+(size,Identifier)
+line:37	number:4
+(;,SemiColon)
+line:37	number:5
+(do,Do)
+line:38	number:1
+(draw,Identifier)
+line:38	number:2
+((,LeftParen)
+line:38	number:3
+(),RightParen)
+line:38	number:4
+(;,SemiColon)
+line:38	number:5
+(},RightCurly)
+line:39	number:1
+(return,Return)
+line:40	number:1
+(;,SemiColon)
+line:40	number:2
+(},RightCurly)
+line:41	number:1
+(method,Method)
+line:43	number:1
+(void,Void)
+line:43	number:2
+(decSize,Identifier)
+line:43	number:3
+((,LeftParen)
+line:43	number:4
+(),RightParen)
+line:43	number:5
+({,LeftCurly)
+line:43	number:6
+(if,If)
+line:44	number:1
+((,LeftParen)
+line:44	number:2
+(size,Identifier)
+line:44	number:3
+(),RightParen)
+line:44	number:4
+({,LeftCurly)
+line:44	number:5
+(do,Do)
+line:45	number:1
+(erase,Identifier)
+line:45	number:2
+((,LeftParen)
+line:45	number:3
+(),RightParen)
+line:45	number:4
+(;,SemiColon)
+line:45	number:5
+(let,Let)
+line:46	number:1
+(size,Identifier)
+line:46	number:2
+(=,Assignment)
+line:46	number:3
+(size,Identifier)
+line:46	number:4
+(;,SemiColon)
+line:46	number:5
+(do,Do)
+line:47	number:1
+(draw,Identifier)
+line:47	number:2
+((,LeftParen)
+line:47	number:3
+(),RightParen)
+line:47	number:4
+(;,SemiColon)
+line:47	number:5
+(},RightCurly)
+line:48	number:1
+(return,Return)
+line:49	number:1
+(;,SemiColon)
+line:49	number:2
+(},RightCurly)
+line:50	number:1
+(method,Method)
+line:52	number:1
+(void,Void)
+line:52	number:2
+(moveUp,Identifier)
+line:52	number:3
+((,LeftParen)
+line:52	number:4
+(),RightParen)
+line:52	number:5
+({,LeftCurly)
+line:52	number:6
+(if,If)
+line:53	number:1
+((,LeftParen)
+line:53	number:2
+(y,Identifier)
+line:53	number:3
+(),RightParen)
+line:53	number:4
+({,LeftCurly)
+line:53	number:5
+(do,Do)
+line:54	number:1
+(Screen,Identifier)
+line:54	number:2
+(.,Dot)
+line:54	number:3
+(setColor,Identifier)
+line:54	number:4
+((,LeftParen)
+line:54	number:5
+(x,Identifier)
+line:54	number:6
+(),RightParen)
+line:54	number:7
+(;,SemiColon)
+line:54	number:8
+(do,Do)
+line:55	number:1
+(Screen,Identifier)
+line:55	number:2
+(.,Dot)
+line:55	number:3
+(drawRectangle,Identifier)
+line:55	number:4
+((,LeftParen)
+line:55	number:5
+(x,Identifier)
+line:55	number:6
+(,,Comma)
+line:55	number:7
+(y,Identifier)
+line:55	number:8
+(,,Comma)
+line:55	number:9
+(x,Identifier)
+line:55	number:10
+(,,Comma)
+line:55	number:11
+(y,Identifier)
+line:55	number:12
+(),RightParen)
+line:55	number:13
+(;,SemiColon)
+line:55	number:14
+(let,Let)
+line:56	number:1
+(y,Identifier)
+line:56	number:2
+(=,Assignment)
+line:56	number:3
+(y,Identifier)
+line:56	number:4
+(;,SemiColon)
+line:56	number:5
+(do,Do)
+line:57	number:1
+(Screen,Identifier)
+line:57	number:2
+(.,Dot)
+line:57	number:3
+(setColor,Identifier)
+line:57	number:4
+((,LeftParen)
+line:57	number:5
+(x,Identifier)
+line:57	number:6
+(),RightParen)
+line:57	number:7
+(;,SemiColon)
+line:57	number:8
+(do,Do)
+line:58	number:1
+(Screen,Identifier)
+line:58	number:2
+(.,Dot)
+line:58	number:3
+(drawRectangle,Identifier)
+line:58	number:4
+((,LeftParen)
+line:58	number:5
+(x,Identifier)
+line:58	number:6
+(,,Comma)
+line:58	number:7
+(y,Identifier)
+line:58	number:8
+(,,Comma)
+line:58	number:9
+(x,Identifier)
+line:58	number:10
+(,,Comma)
+line:58	number:11
+(y,Identifier)
+line:58	number:12
+(),RightParen)
+line:58	number:13
+(;,SemiColon)
+line:58	number:14
+(},RightCurly)
+line:59	number:1
+(return,Return)
+line:60	number:1
+(;,SemiColon)
+line:60	number:2
+(},RightCurly)
+line:61	number:1
+(method,Method)
+line:63	number:1
+(void,Void)
+line:63	number:2
+(moveDown,Identifier)
+line:63	number:3
+((,LeftParen)
+line:63	number:4
+(),RightParen)
+line:63	number:5
+({,LeftCurly)
+line:63	number:6
+(if,If)
+line:64	number:1
+((,LeftParen)
+line:64	number:2
+(y,Identifier)
+line:64	number:3
+(),RightParen)
+line:64	number:4
+({,LeftCurly)
+line:64	number:5
+(do,Do)
+line:65	number:1
+(Screen,Identifier)
+line:65	number:2
+(.,Dot)
+line:65	number:3
+(setColor,Identifier)
+line:65	number:4
+((,LeftParen)
+line:65	number:5
+(x,Identifier)
+line:65	number:6
+(),RightParen)
+line:65	number:7
+(;,SemiColon)
+line:65	number:8
+(do,Do)
+line:66	number:1
+(Screen,Identifier)
+line:66	number:2
+(.,Dot)
+line:66	number:3
+(drawRectangle,Identifier)
+line:66	number:4
+((,LeftParen)
+line:66	number:5
+(x,Identifier)
+line:66	number:6
+(,,Comma)
+line:66	number:7
+(y,Identifier)
+line:66	number:8
+(,,Comma)
+line:66	number:9
+(x,Identifier)
+line:66	number:10
+(,,Comma)
+line:66	number:11
+(y,Identifier)
+line:66	number:12
+(),RightParen)
+line:66	number:13
+(;,SemiColon)
+line:66	number:14
+(let,Let)
+line:67	number:1
+(y,Identifier)
+line:67	number:2
+(=,Assignment)
+line:67	number:3
+(y,Identifier)
+line:67	number:4
+(;,SemiColon)
+line:67	number:5
+(do,Do)
+line:68	number:1
+(Screen,Identifier)
+line:68	number:2
+(.,Dot)
+line:68	number:3
+(setColor,Identifier)
+line:68	number:4
+((,LeftParen)
+line:68	number:5
+(x,Identifier)
+line:68	number:6
+(),RightParen)
+line:68	number:7
+(;,SemiColon)
+line:68	number:8
+(do,Do)
+line:69	number:1
+(Screen,Identifier)
+line:69	number:2
+(.,Dot)
+line:69	number:3
+(drawRectangle,Identifier)
+line:69	number:4
+((,LeftParen)
+line:69	number:5
+(x,Identifier)
+line:69	number:6
+(,,Comma)
+line:69	number:7
+(y,Identifier)
+line:69	number:8
+(,,Comma)
+line:69	number:9
+(x,Identifier)
+line:69	number:10
+(,,Comma)
+line:69	number:11
+(y,Identifier)
+line:69	number:12
+(),RightParen)
+line:69	number:13
+(;,SemiColon)
+line:69	number:14
+(},RightCurly)
+line:70	number:1
+(return,Return)
+line:71	number:1
+(;,SemiColon)
+line:71	number:2
+(},RightCurly)
+line:72	number:1
+(method,Method)
+line:74	number:1
+(void,Void)
+line:74	number:2
+(moveLeft,Identifier)
+line:74	number:3
+((,LeftParen)
+line:74	number:4
+(),RightParen)
+line:74	number:5
+({,LeftCurly)
+line:74	number:6
+(if,If)
+line:75	number:1
+((,LeftParen)
+line:75	number:2
+(x,Identifier)
+line:75	number:3
+(),RightParen)
+line:75	number:4
+({,LeftCurly)
+line:75	number:5
+(do,Do)
+line:76	number:1
+(Screen,Identifier)
+line:76	number:2
+(.,Dot)
+line:76	number:3
+(setColor,Identifier)
+line:76	number:4
+((,LeftParen)
+line:76	number:5
+(x,Identifier)
+line:76	number:6
+(),RightParen)
+line:76	number:7
+(;,SemiColon)
+line:76	number:8
+(do,Do)
+line:77	number:1
+(Screen,Identifier)
+line:77	number:2
+(.,Dot)
+line:77	number:3
+(drawRectangle,Identifier)
+line:77	number:4
+((,LeftParen)
+line:77	number:5
+(x,Identifier)
+line:77	number:6
+(,,Comma)
+line:77	number:7
+(y,Identifier)
+line:77	number:8
+(,,Comma)
+line:77	number:9
+(x,Identifier)
+line:77	number:10
+(,,Comma)
+line:77	number:11
+(y,Identifier)
+line:77	number:12
+(),RightParen)
+line:77	number:13
+(;,SemiColon)
+line:77	number:14
+(let,Let)
+line:78	number:1
+(x,Identifier)
+line:78	number:2
+(=,Assignment)
+line:78	number:3
+(x,Identifier)
+line:78	number:4
+(;,SemiColon)
+line:78	number:5
+(do,Do)
+line:79	number:1
+(Screen,Identifier)
+line:79	number:2
+(.,Dot)
+line:79	number:3
+(setColor,Identifier)
+line:79	number:4
+((,LeftParen)
+line:79	number:5
+(x,Identifier)
+line:79	number:6
+(),RightParen)
+line:79	number:7
+(;,SemiColon)
+line:79	number:8
+(do,Do)
+line:80	number:1
+(Screen,Identifier)
+line:80	number:2
+(.,Dot)
+line:80	number:3
+(drawRectangle,Identifier)
+line:80	number:4
+((,LeftParen)
+line:80	number:5
+(x,Identifier)
+line:80	number:6
+(,,Comma)
+line:80	number:7
+(y,Identifier)
+line:80	number:8
+(,,Comma)
+line:80	number:9
+(x,Identifier)
+line:80	number:10
+(,,Comma)
+line:80	number:11
+(y,Identifier)
+line:80	number:12
+(),RightParen)
+line:80	number:13
+(;,SemiColon)
+line:80	number:14
+(},RightCurly)
+line:81	number:1
+(return,Return)
+line:82	number:1
+(;,SemiColon)
+line:82	number:2
+(},RightCurly)
+line:83	number:1
+(method,Method)
+line:85	number:1
+(void,Void)
+line:85	number:2
+(moveRight,Identifier)
+line:85	number:3
+((,LeftParen)
+line:85	number:4
+(),RightParen)
+line:85	number:5
+({,LeftCurly)
+line:85	number:6
+(if,If)
+line:86	number:1
+((,LeftParen)
+line:86	number:2
+(x,Identifier)
+line:86	number:3
+(),RightParen)
+line:86	number:4
+({,LeftCurly)
+line:86	number:5
+(do,Do)
+line:87	number:1
+(Screen,Identifier)
+line:87	number:2
+(.,Dot)
+line:87	number:3
+(setColor,Identifier)
+line:87	number:4
+((,LeftParen)
+line:87	number:5
+(x,Identifier)
+line:87	number:6
+(),RightParen)
+line:87	number:7
+(;,SemiColon)
+line:87	number:8
+(do,Do)
+line:88	number:1
+(Screen,Identifier)
+line:88	number:2
+(.,Dot)
+line:88	number:3
+(drawRectangle,Identifier)
+line:88	number:4
+((,LeftParen)
+line:88	number:5
+(x,Identifier)
+line:88	number:6
+(,,Comma)
+line:88	number:7
+(y,Identifier)
+line:88	number:8
+(,,Comma)
+line:88	number:9
+(x,Identifier)
+line:88	number:10
+(,,Comma)
+line:88	number:11
+(y,Identifier)
+line:88	number:12
+(),RightParen)
+line:88	number:13
+(;,SemiColon)
+line:88	number:14
+(let,Let)
+line:89	number:1
+(x,Identifier)
+line:89	number:2
+(=,Assignment)
+line:89	number:3
+(x,Identifier)
+line:89	number:4
+(;,SemiColon)
+line:89	number:5
+(do,Do)
+line:90	number:1
+(Screen,Identifier)
+line:90	number:2
+(.,Dot)
+line:90	number:3
+(setColor,Identifier)
+line:90	number:4
+((,LeftParen)
+line:90	number:5
+(x,Identifier)
+line:90	number:6
+(),RightParen)
+line:90	number:7
+(;,SemiColon)
+line:90	number:8
+(do,Do)
+line:91	number:1
+(Screen,Identifier)
+line:91	number:2
+(.,Dot)
+line:91	number:3
+(drawRectangle,Identifier)
+line:91	number:4
+((,LeftParen)
+line:91	number:5
+(x,Identifier)
+line:91	number:6
+(,,Comma)
+line:91	number:7
+(y,Identifier)
+line:91	number:8
+(,,Comma)
+line:91	number:9
+(x,Identifier)
+line:91	number:10
+(,,Comma)
+line:91	number:11
+(y,Identifier)
+line:91	number:12
+(),RightParen)
+line:91	number:13
+(;,SemiColon)
+line:91	number:14
+(},RightCurly)
+line:92	number:1
+(return,Return)
+line:93	number:1
+(;,SemiColon)
+line:93	number:2
+(},RightCurly)
+line:94	number:1
+(},RightCurly)
+line:95	number:1
+compile classVarDec success
+compile classVarDec success
+compile parameterList success
+compile let statement success
+compile let statement success
+compile let statement success
+compile do statement success
+compile return statement success
+compile subroutineBody success
+compile subroutineDec  success
+compile do statement success
+compile return statement success
+compile subroutineBody success
+compile subroutineDec  success
+compile do statement success
+compile do statement success
+compile return statement success
+compile subroutineBody success
+compile subroutineDec  success
+compile do statement success
+compile do statement success
+compile return statement success
+compile subroutineBody success
+compile subroutineDec  success
+compile do statement success
+compile let statement success
+compile do statement success
+compile if statement finished
+compile return statement success
+compile subroutineBody success
+compile subroutineDec  success
+compile do statement success
+compile let statement success
+compile do statement success
+compile if statement finished
+compile return statement success
+compile subroutineBody success
+compile subroutineDec  success
+compile do statement success
+compile do statement success
+compile let statement success
+compile do statement success
+compile do statement success
+compile if statement finished
+compile return statement success
+compile subroutineBody success
+compile subroutineDec  success
+compile do statement success
+compile do statement success
+compile let statement success
+compile do statement success
+compile do statement success
+compile if statement finished
+compile return statement success
+compile subroutineBody success
+compile subroutineDec  success
+compile do statement success
+compile do statement success
+compile let statement success
+compile do statement success
+compile do statement success
+compile if statement finished
+compile return statement success
+compile subroutineBody success
+compile subroutineDec  success
+compile do statement success
+compile do statement success
+compile let statement success
+compile do statement success
+compile do statement success
+compile if statement finished
+compile return statement success
+compile subroutineBody success
+compile subroutineDec  success
+compile class file success
+the ast is
+Class class
+	Class class
+	Identifier Square
+	LeftCurly {
+	classVarDec classVarDec
+		Field field
+		Int int
+		Identifier x
+		Comma ,
+		Identifier y
+		SemiColon ;
+	classVarDec classVarDec
+		Field field
+		Int int
+		Identifier size
+		SemiColon ;
+	subroutineDec subroutineDec
+		Constructor constructor
+		Identifier Square
+		Identifier new
+		LeftParen (
+		parameterList parameterList
+			Int int
+			Identifier Ax
+			Comma ,
+			Int int
+			Identifier Ay
+			Comma ,
+			Int int
+			Identifier Asize
+		RightParen )
+		subroutineBody subroutineBody
+			LeftCurly {
+			letStatement letStatement
+				Let let
+				Identifier x
+				Assignment =
+				expression expression
+					term term
+						Identifier Ax
+				SemiColon ;
+			letStatement letStatement
+				Let let
+				Identifier y
+				Assignment =
+				expression expression
+					term term
+						Identifier Ay
+				SemiColon ;
+			letStatement letStatement
+				Let let
+				Identifier size
+				Assignment =
+				expression expression
+					term term
+						Identifier Asize
+				SemiColon ;
+			doStatement doStatement
+				Do do
+				Identifier draw
+				LeftParen (
+				RightParen )
+				SemiColon ;
+			returnStatement returnStatement
+				Return return
+				expression expression
+					term term
+						Identifier x
+				SemiColon ;
+			RightCurly }
+	subroutineDec subroutineDec
+		Method method
+		Void void
+		Identifier dispose
+		LeftParen (
+		RightParen )
+		subroutineBody subroutineBody
+			LeftCurly {
+			doStatement doStatement
+				Do do
+				Identifier Memory
+				Dot .
+				Identifier deAlloc
+				LeftParen (
+				expressionList expressionList
+					expression expression
+						term term
+							This this
+				RightParen )
+				SemiColon ;
+			returnStatement returnStatement
+				Return return
+				SemiColon ;
+			RightCurly }
+	subroutineDec subroutineDec
+		Method method
+		Void void
+		Identifier draw
+		LeftParen (
+		RightParen )
+		subroutineBody subroutineBody
+			LeftCurly {
+			doStatement doStatement
+				Do do
+				Identifier Screen
+				Dot .
+				Identifier setColor
+				LeftParen (
+				expressionList expressionList
+					expression expression
+						term term
+							Identifier x
+				RightParen )
+				SemiColon ;
+			doStatement doStatement
+				Do do
+				Identifier Screen
+				Dot .
+				Identifier drawRectangle
+				LeftParen (
+				expressionList expressionList
+					expression expression
+						term term
+							Identifier x
+					Comma ,
+					expression expression
+						term term
+							Identifier y
+					Comma ,
+					expression expression
+						term term
+							Identifier x
+					Comma ,
+					expression expression
+						term term
+							Identifier y
+				RightParen )
+				SemiColon ;
+			returnStatement returnStatement
+				Return return
+				SemiColon ;
+			RightCurly }
+	subroutineDec subroutineDec
+		Method method
+		Void void
+		Identifier erase
+		LeftParen (
+		RightParen )
+		subroutineBody subroutineBody
+			LeftCurly {
+			doStatement doStatement
+				Do do
+				Identifier Screen
+				Dot .
+				Identifier setColor
+				LeftParen (
+				expressionList expressionList
+					expression expression
+						term term
+							Identifier x
+				RightParen )
+				SemiColon ;
+			doStatement doStatement
+				Do do
+				Identifier Screen
+				Dot .
+				Identifier drawRectangle
+				LeftParen (
+				expressionList expressionList
+					expression expression
+						term term
+							Identifier x
+					Comma ,
+					expression expression
+						term term
+							Identifier y
+					Comma ,
+					expression expression
+						term term
+							Identifier x
+					Comma ,
+					expression expression
+						term term
+							Identifier y
+				RightParen )
+				SemiColon ;
+			returnStatement returnStatement
+				Return return
+				SemiColon ;
+			RightCurly }
+	subroutineDec subroutineDec
+		Method method
+		Void void
+		Identifier incSize
+		LeftParen (
+		RightParen )
+		subroutineBody subroutineBody
+			LeftCurly {
+			ifStatement ifStatement
+				If if
+				LeftParen (
+				expression expression
+					term term
+						Identifier x
+				RightParen )
+				LeftCurly {
+				doStatement doStatement
+					Do do
+					Identifier erase
+					LeftParen (
+					RightParen )
+					SemiColon ;
+				letStatement letStatement
+					Let let
+					Identifier size
+					Assignment =
+					expression expression
+						term term
+							Identifier size
+					SemiColon ;
+				doStatement doStatement
+					Do do
+					Identifier draw
+					LeftParen (
+					RightParen )
+					SemiColon ;
+				RightCurly }
+			returnStatement returnStatement
+				Return return
+				SemiColon ;
+			RightCurly }
+	subroutineDec subroutineDec
+		Method method
+		Void void
+		Identifier decSize
+		LeftParen (
+		RightParen )
+		subroutineBody subroutineBody
+			LeftCurly {
+			ifStatement ifStatement
+				If if
+				LeftParen (
+				expression expression
+					term term
+						Identifier size
+				RightParen )
+				LeftCurly {
+				doStatement doStatement
+					Do do
+					Identifier erase
+					LeftParen (
+					RightParen )
+					SemiColon ;
+				letStatement letStatement
+					Let let
+					Identifier size
+					Assignment =
+					expression expression
+						term term
+							Identifier size
+					SemiColon ;
+				doStatement doStatement
+					Do do
+					Identifier draw
+					LeftParen (
+					RightParen )
+					SemiColon ;
+				RightCurly }
+			returnStatement returnStatement
+				Return return
+				SemiColon ;
+			RightCurly }
+	subroutineDec subroutineDec
+		Method method
+		Void void
+		Identifier moveUp
+		LeftParen (
+		RightParen )
+		subroutineBody subroutineBody
+			LeftCurly {
+			ifStatement ifStatement
+				If if
+				LeftParen (
+				expression expression
+					term term
+						Identifier y
+				RightParen )
+				LeftCurly {
+				doStatement doStatement
+					Do do
+					Identifier Screen
+					Dot .
+					Identifier setColor
+					LeftParen (
+					expressionList expressionList
+						expression expression
+							term term
+								Identifier x
+					RightParen )
+					SemiColon ;
+				doStatement doStatement
+					Do do
+					Identifier Screen
+					Dot .
+					Identifier drawRectangle
+					LeftParen (
+					expressionList expressionList
+						expression expression
+							term term
+								Identifier x
+						Comma ,
+						expression expression
+							term term
+								Identifier y
+						Comma ,
+						expression expression
+							term term
+								Identifier x
+						Comma ,
+						expression expression
+							term term
+								Identifier y
+					RightParen )
+					SemiColon ;
+				letStatement letStatement
+					Let let
+					Identifier y
+					Assignment =
+					expression expression
+						term term
+							Identifier y
+					SemiColon ;
+				doStatement doStatement
+					Do do
+					Identifier Screen
+					Dot .
+					Identifier setColor
+					LeftParen (
+					expressionList expressionList
+						expression expression
+							term term
+								Identifier x
+					RightParen )
+					SemiColon ;
+				doStatement doStatement
+					Do do
+					Identifier Screen
+					Dot .
+					Identifier drawRectangle
+					LeftParen (
+					expressionList expressionList
+						expression expression
+							term term
+								Identifier x
+						Comma ,
+						expression expression
+							term term
+								Identifier y
+						Comma ,
+						expression expression
+							term term
+								Identifier x
+						Comma ,
+						expression expression
+							term term
+								Identifier y
+					RightParen )
+					SemiColon ;
+				RightCurly }
+			returnStatement returnStatement
+				Return return
+				SemiColon ;
+			RightCurly }
+	subroutineDec subroutineDec
+		Method method
+		Void void
+		Identifier moveDown
+		LeftParen (
+		RightParen )
+		subroutineBody subroutineBody
+			LeftCurly {
+			ifStatement ifStatement
+				If if
+				LeftParen (
+				expression expression
+					term term
+						Identifier y
+				RightParen )
+				LeftCurly {
+				doStatement doStatement
+					Do do
+					Identifier Screen
+					Dot .
+					Identifier setColor
+					LeftParen (
+					expressionList expressionList
+						expression expression
+							term term
+								Identifier x
+					RightParen )
+					SemiColon ;
+				doStatement doStatement
+					Do do
+					Identifier Screen
+					Dot .
+					Identifier drawRectangle
+					LeftParen (
+					expressionList expressionList
+						expression expression
+							term term
+								Identifier x
+						Comma ,
+						expression expression
+							term term
+								Identifier y
+						Comma ,
+						expression expression
+							term term
+								Identifier x
+						Comma ,
+						expression expression
+							term term
+								Identifier y
+					RightParen )
+					SemiColon ;
+				letStatement letStatement
+					Let let
+					Identifier y
+					Assignment =
+					expression expression
+						term term
+							Identifier y
+					SemiColon ;
+				doStatement doStatement
+					Do do
+					Identifier Screen
+					Dot .
+					Identifier setColor
+					LeftParen (
+					expressionList expressionList
+						expression expression
+							term term
+								Identifier x
+					RightParen )
+					SemiColon ;
+				doStatement doStatement
+					Do do
+					Identifier Screen
+					Dot .
+					Identifier drawRectangle
+					LeftParen (
+					expressionList expressionList
+						expression expression
+							term term
+								Identifier x
+						Comma ,
+						expression expression
+							term term
+								Identifier y
+						Comma ,
+						expression expression
+							term term
+								Identifier x
+						Comma ,
+						expression expression
+							term term
+								Identifier y
+					RightParen )
+					SemiColon ;
+				RightCurly }
+			returnStatement returnStatement
+				Return return
+				SemiColon ;
+			RightCurly }
+	subroutineDec subroutineDec
+		Method method
+		Void void
+		Identifier moveLeft
+		LeftParen (
+		RightParen )
+		subroutineBody subroutineBody
+			LeftCurly {
+			ifStatement ifStatement
+				If if
+				LeftParen (
+				expression expression
+					term term
+						Identifier x
+				RightParen )
+				LeftCurly {
+				doStatement doStatement
+					Do do
+					Identifier Screen
+					Dot .
+					Identifier setColor
+					LeftParen (
+					expressionList expressionList
+						expression expression
+							term term
+								Identifier x
+					RightParen )
+					SemiColon ;
+				doStatement doStatement
+					Do do
+					Identifier Screen
+					Dot .
+					Identifier drawRectangle
+					LeftParen (
+					expressionList expressionList
+						expression expression
+							term term
+								Identifier x
+						Comma ,
+						expression expression
+							term term
+								Identifier y
+						Comma ,
+						expression expression
+							term term
+								Identifier x
+						Comma ,
+						expression expression
+							term term
+								Identifier y
+					RightParen )
+					SemiColon ;
+				letStatement letStatement
+					Let let
+					Identifier x
+					Assignment =
+					expression expression
+						term term
+							Identifier x
+					SemiColon ;
+				doStatement doStatement
+					Do do
+					Identifier Screen
+					Dot .
+					Identifier setColor
+					LeftParen (
+					expressionList expressionList
+						expression expression
+							term term
+								Identifier x
+					RightParen )
+					SemiColon ;
+				doStatement doStatement
+					Do do
+					Identifier Screen
+					Dot .
+					Identifier drawRectangle
+					LeftParen (
+					expressionList expressionList
+						expression expression
+							term term
+								Identifier x
+						Comma ,
+						expression expression
+							term term
+								Identifier y
+						Comma ,
+						expression expression
+							term term
+								Identifier x
+						Comma ,
+						expression expression
+							term term
+								Identifier y
+					RightParen )
+					SemiColon ;
+				RightCurly }
+			returnStatement returnStatement
+				Return return
+				SemiColon ;
+			RightCurly }
+	subroutineDec subroutineDec
+		Method method
+		Void void
+		Identifier moveRight
+		LeftParen (
+		RightParen )
+		subroutineBody subroutineBody
+			LeftCurly {
+			ifStatement ifStatement
+				If if
+				LeftParen (
+				expression expression
+					term term
+						Identifier x
+				RightParen )
+				LeftCurly {
+				doStatement doStatement
+					Do do
+					Identifier Screen
+					Dot .
+					Identifier setColor
+					LeftParen (
+					expressionList expressionList
+						expression expression
+							term term
+								Identifier x
+					RightParen )
+					SemiColon ;
+				doStatement doStatement
+					Do do
+					Identifier Screen
+					Dot .
+					Identifier drawRectangle
+					LeftParen (
+					expressionList expressionList
+						expression expression
+							term term
+								Identifier x
+						Comma ,
+						expression expression
+							term term
+								Identifier y
+						Comma ,
+						expression expression
+							term term
+								Identifier x
+						Comma ,
+						expression expression
+							term term
+								Identifier y
+					RightParen )
+					SemiColon ;
+				letStatement letStatement
+					Let let
+					Identifier x
+					Assignment =
+					expression expression
+						term term
+							Identifier x
+					SemiColon ;
+				doStatement doStatement
+					Do do
+					Identifier Screen
+					Dot .
+					Identifier setColor
+					LeftParen (
+					expressionList expressionList
+						expression expression
+							term term
+								Identifier x
+					RightParen )
+					SemiColon ;
+				doStatement doStatement
+					Do do
+					Identifier Screen
+					Dot .
+					Identifier drawRectangle
+					LeftParen (
+					expressionList expressionList
+						expression expression
+							term term
+								Identifier x
+						Comma ,
+						expression expression
+							term term
+								Identifier y
+						Comma ,
+						expression expression
+							term term
+								Identifier x
+						Comma ,
+						expression expression
+							term term
+								Identifier y
+					RightParen )
+					SemiColon ;
+				RightCurly }
+			returnStatement returnStatement
+				Return return
+				SemiColon ;
+			RightCurly }
+	RightCurly }
+

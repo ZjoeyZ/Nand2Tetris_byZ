@@ -1,0 +1,382 @@
+tokens are:
+(class,Class)
+line:1	number:1
+(Main,Identifier)
+line:1	number:2
+({,LeftCurly)
+line:1	number:3
+(static,Static)
+line:2	number:1
+(boolean,Boolean)
+line:2	number:2
+(test,Identifier)
+line:2	number:3
+(;,SemiColon)
+line:2	number:4
+(function,Function)
+line:5	number:1
+(void,Void)
+line:5	number:2
+(main,Identifier)
+line:5	number:3
+((,LeftParen)
+line:5	number:4
+(),RightParen)
+line:5	number:5
+({,LeftCurly)
+line:5	number:6
+(var,Var)
+line:6	number:1
+(SquareGame,Identifier)
+line:6	number:2
+(game,Identifier)
+line:6	number:3
+(;,SemiColon)
+line:6	number:4
+(let,Let)
+line:7	number:1
+(game,Identifier)
+line:7	number:2
+(=,Assignment)
+line:7	number:3
+(game,Identifier)
+line:7	number:4
+(;,SemiColon)
+line:7	number:5
+(do,Do)
+line:8	number:1
+(game,Identifier)
+line:8	number:2
+(.,Dot)
+line:8	number:3
+(run,Identifier)
+line:8	number:4
+((,LeftParen)
+line:8	number:5
+(),RightParen)
+line:8	number:6
+(;,SemiColon)
+line:8	number:7
+(do,Do)
+line:9	number:1
+(game,Identifier)
+line:9	number:2
+(.,Dot)
+line:9	number:3
+(dispose,Identifier)
+line:9	number:4
+((,LeftParen)
+line:9	number:5
+(),RightParen)
+line:9	number:6
+(;,SemiColon)
+line:9	number:7
+(return,Return)
+line:10	number:1
+(;,SemiColon)
+line:10	number:2
+(},RightCurly)
+line:11	number:1
+(function,Function)
+line:13	number:1
+(void,Void)
+line:13	number:2
+(test,Identifier)
+line:13	number:3
+((,LeftParen)
+line:13	number:4
+(),RightParen)
+line:13	number:5
+({,LeftCurly)
+line:13	number:6
+(var,Var)
+line:14	number:1
+(int,Int)
+line:14	number:2
+(i,Identifier)
+line:14	number:3
+(,,Comma)
+line:14	number:4
+(j,Identifier)
+line:14	number:5
+(;,SemiColon)
+line:14	number:6
+(var,Var)
+line:15	number:1
+(String,Identifier)
+line:15	number:2
+(s,Identifier)
+line:15	number:3
+(;,SemiColon)
+line:15	number:4
+(var,Var)
+line:16	number:1
+(Array,Identifier)
+line:16	number:2
+(a,Identifier)
+line:16	number:3
+(;,SemiColon)
+line:16	number:4
+(if,If)
+line:17	number:1
+((,LeftParen)
+line:17	number:2
+(i,Identifier)
+line:17	number:3
+(),RightParen)
+line:17	number:4
+({,LeftCurly)
+line:17	number:5
+(let,Let)
+line:18	number:1
+(s,Identifier)
+line:18	number:2
+(=,Assignment)
+line:18	number:3
+(i,Identifier)
+line:18	number:4
+(;,SemiColon)
+line:18	number:5
+(let,Let)
+line:19	number:1
+(s,Identifier)
+line:19	number:2
+(=,Assignment)
+line:19	number:3
+(j,Identifier)
+line:19	number:4
+(;,SemiColon)
+line:19	number:5
+(let,Let)
+line:20	number:1
+(a,Identifier)
+line:20	number:2
+([,LeftBracket)
+line:20	number:3
+(i,Identifier)
+line:20	number:4
+(],RightBracket)
+line:20	number:5
+(=,Assignment)
+line:20	number:6
+(j,Identifier)
+line:20	number:7
+(;,SemiColon)
+line:20	number:8
+(},RightCurly)
+line:21	number:1
+(else,Else)
+line:22	number:1
+({,LeftCurly)
+line:22	number:2
+(let,Let)
+line:23	number:1
+(i,Identifier)
+line:23	number:2
+(=,Assignment)
+line:23	number:3
+(i,Identifier)
+line:23	number:4
+(;,SemiColon)
+line:23	number:5
+(let,Let)
+line:24	number:1
+(j,Identifier)
+line:24	number:2
+(=,Assignment)
+line:24	number:3
+(j,Identifier)
+line:24	number:4
+(;,SemiColon)
+line:24	number:5
+(let,Let)
+line:25	number:1
+(i,Identifier)
+line:25	number:2
+(=,Assignment)
+line:25	number:3
+(i,Identifier)
+line:25	number:4
+(|,Or)
+line:25	number:5
+(j,Identifier)
+line:25	number:6
+(;,SemiColon)
+line:25	number:7
+(},RightCurly)
+line:26	number:1
+(return,Return)
+line:27	number:1
+(;,SemiColon)
+line:27	number:2
+(},RightCurly)
+line:28	number:1
+(},RightCurly)
+line:29	number:1
+compile classVarDec success
+compile let statement success
+compile do statement success
+compile do statement success
+compile return statement success
+compile subroutineBody success
+compile subroutineDec  success
+compile let statement success
+compile let statement success
+compile let statement success
+compile let statement success
+compile let statement success
+compile let statement success
+compile if statement finished
+compile return statement success
+compile subroutineBody success
+compile subroutineDec  success
+compile class file success
+the ast is 
+Class class
+	Class class
+	Identifier Main
+	LeftCurly {
+	classVarDec classVarDec
+		Static static
+		Boolean boolean
+		Identifier test
+		SemiColon ;
+	subroutineDec subroutineDec
+		Function function
+		Void void
+		Identifier main
+		LeftParen (
+		RightParen )
+		subroutineBody subroutineBody
+			LeftCurly {
+			varDec varDec
+				Var var
+				Identifier SquareGame
+				Identifier game
+				SemiColon ;
+			letStatement letStatement
+				Let let
+				Identifier game
+				Assignment =
+				expression expression
+					term term
+						Identifier game
+				SemiColon ;
+			doStatement doStatement
+				Do do
+				Identifier game
+				Dot .
+				Identifier run
+				LeftParen (
+				RightParen )
+				SemiColon ;
+			doStatement doStatement
+				Do do
+				Identifier game
+				Dot .
+				Identifier dispose
+				LeftParen (
+				RightParen )
+				SemiColon ;
+			returnStatement returnStatement
+				Return return
+				SemiColon ;
+			RightCurly }
+	subroutineDec subroutineDec
+		Function function
+		Void void
+		Identifier test
+		LeftParen (
+		RightParen )
+		subroutineBody subroutineBody
+			LeftCurly {
+			varDec varDec
+				Var var
+				Int int
+				Identifier i
+				Comma ,
+				Identifier j
+				SemiColon ;
+			varDec varDec
+				Var var
+				Identifier String
+				Identifier s
+				SemiColon ;
+			varDec varDec
+				Var var
+				Identifier Array
+				Identifier a
+				SemiColon ;
+			ifStatement ifStatement
+				If if
+				LeftParen (
+				expression expression
+					term term
+						Identifier i
+				RightParen )
+				LeftCurly {
+				letStatement letStatement
+					Let let
+					Identifier s
+					Assignment =
+					expression expression
+						term term
+							Identifier i
+					SemiColon ;
+				letStatement letStatement
+					Let let
+					Identifier s
+					Assignment =
+					expression expression
+						term term
+							Identifier j
+					SemiColon ;
+				letStatement letStatement
+					Let let
+					Identifier a
+					LeftBracket [
+					expression expression
+						term term
+							Identifier i
+					RightBracket ]
+					Assignment =
+					expression expression
+						term term
+							Identifier j
+					SemiColon ;
+				RightCurly }
+				Else else
+				LeftCurly {
+				letStatement letStatement
+					Let let
+					Identifier i
+					Assignment =
+					expression expression
+						term term
+							Identifier i
+					SemiColon ;
+				letStatement letStatement
+					Let let
+					Identifier j
+					Assignment =
+					expression expression
+						term term
+							Identifier j
+					SemiColon ;
+				letStatement letStatement
+					Let let
+					Identifier i
+					Assignment =
+					expression expression
+						term term
+							Identifier i
+						Or |
+						term term
+							Identifier j
+					SemiColon ;
+				RightCurly }
+			returnStatement returnStatement
+				Return return
+				SemiColon ;
+			RightCurly }
+	RightCurly }
