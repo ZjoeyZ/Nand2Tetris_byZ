@@ -48,7 +48,6 @@ jack 语言是我《计算机系统要素》这本书中学会的一门类java�
 * [REPL.java](src/REPL.java) 解释器。
 * [Parser.java](src/Parser.java) 语法分析器
 * [Tokenizer.java](src/Tokenizer.java) 分词器
-* [ASTEvaluator.java](src/Tokenizer.java) 解释器，对AST遍历求值。
 * [type](src/type) 包含 token 类型和 AST结点 类型
 * [node](src/node) 包含 token 和 AST结点 
 
