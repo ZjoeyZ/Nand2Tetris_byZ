@@ -1,4 +1,5 @@
 
+ ### 介绍
  许多人把这本书当做初学者的入门读物来推荐，那这和让初学者去看《计算机科学导论》有什么区别？  
  在我看来《计算机系统要素》其实是一本贯穿CS本科学习的任务书，每当你完成特定的本科课程你就有能力完成这个书上的一个任务，点亮地图中的一个角落。 
     
@@ -11,5 +12,10 @@
 就像我说的这本书就是一本任务书，在每个章节作者都描述了你要完成什么任务，帮助你理解要实现的东西是什么，如何完成这个任务，在你实现之后，还有大量辅助的工具来用来进行测试，甚至学完之后你还可以贪得无厌，去翻翻作者的源代码，看他是怎么实现这些工具的。
  
 本书豆瓣地址：https://book.douban.com/subject/1998341/  
-本书官网地址（可以下载本书相关工具和进入论坛）：https://www.nand2tetris.org/
-本书作者教学视频（B站也有）：https://www.coursera.org/learn/build-a-computer
+本书官网地址：https://www.nand2tetris.org/  
+本书作者教学视频：https://www.coursera.org/learn/build-a-computer  
+### 我完成的项目
+* [1.Assembler](./1.Assembler) 第 6 章的翻译器。
+* [2.VirtuMachine](./2.VirtualMachine) 第 7-8 章的虚拟机。
+* [3.Compile](./3.Compile) 第 9-11 章的翻译器(没有做完，我在选择在 [CompileCourse](./CompileCourse) 将它继续完善。
+
