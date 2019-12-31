@@ -29,8 +29,8 @@
 
 
 ### 链接
-中文书资源搜索：https://www.jiumodiary.com/ 或者 https://www.yunpanjingling.com/
-英文书资源搜索：http://gen.lib.rus.ec/
+中文书资源搜索：https://www.jiumodiary.com/ 或者 https://www.yunpanjingling.com/  
+英文书资源搜索：http://gen.lib.rus.ec/  
 
 本书豆瓣地址：https://book.douban.com/subject/1998341/  
 本书官网地址：https://www.nand2tetris.org/  
