@@ -15,17 +15,21 @@
 ### 学习建议
 对于基础薄弱又想快速实现这本书中所有项目的同学，我认为其实是有方法的。 
 首先由于每个项目需要一定的**前置知识**，而作者其实在每一章开始的时候已经把所需要用到的知识描述的很清楚了。为了让你能掌握这些知识，作者给你安排的任务就是把这些知识用到实践之中，去实现书中的项目。而**对于初学者来说，学以致用恰恰是难点所在**,当你看完一章后，不在不知道从何处下手时，我建议你**别人是如何按照作者的要求去实现的**，最好是先看一点点别人是怎么开始第一步的，然后你自己根据作者的需求文档实现接下来的内容。  
-仓库推荐：
+
+### 仓库推荐
 * https://github.com/havivha/Nand2Tetris  （6-11章用 Python 实现）
 * https://github.com/woai3c/nand2tetris （6-11章用 JavaScript 实现）
 * https://github.com/xctom/Nand2Tetris （6-11章用 Java 实现）
 
-其他链接：  
-本书豆瓣地址：https://book.douban.com/subject/1998341/  
-本书官网地址：https://www.nand2tetris.org/  
-本书作者教学视频：https://www.coursera.org/learn/build-a-computer  
+
 ### 我完成的项目
 * [1.Assembler](./1.Assembler) 第 6 章的翻译器。
 * [2.VirtuMachine](./2.VirtualMachine) 第 7-8 章的虚拟机。
 * [3.Compile](./3.Compile) 第 9-11 章的翻译器，没有做完。我在选择在 [CompileCourse](./CompileCourse) 将它继续完善。
 
+
+其他链接：  
+本书豆瓣地址：https://book.douban.com/subject/1998341/  
+本书官网地址：https://www.nand2tetris.org/  
+作者教学视频（Coursera）：https://www.coursera.org/learn/build-a-computer  
+作者教学视频（Bilibili）：https://www.bilibili.com/video/av76716528?from=search&seid=1923971781522961785
