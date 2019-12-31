@@ -28,8 +28,12 @@
 * [3.Compile](./3.Compile) 第 9-11 章的翻译器，没有做完。我在选择在 [CompileCourse](./CompileCourse) 将它继续完善。
 
 
-### 其他链接
+### 链接
+中文书资源搜索：https://www.jiumodiary.com/ 或者 https://www.yunpanjingling.com/
+英文书资源搜索：http://gen.lib.rus.ec/
+
 本书豆瓣地址：https://book.douban.com/subject/1998341/  
 本书官网地址：https://www.nand2tetris.org/  
+
 作者教学视频（Coursera）：https://www.coursera.org/learn/build-a-computer  
 作者教学视频（Bilibili）：https://www.bilibili.com/video/av76716528?from=search&seid=1923971781522961785
