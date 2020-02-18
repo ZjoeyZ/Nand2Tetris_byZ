@@ -1,0 +1,10 @@
+/** Initializes a new Square Dance game and starts running it. */
+class Main {
+    function void main() {
+        var SquareGame game;
+        let game = SquareGame.new();
+        do game.run();
+        do game.dispose();
+        return;
+    }
+}

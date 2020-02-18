@@ -1,5 +1,5 @@
 import node.*;
-import type.NTokenType;
+import type.GrammarType;
 import type.TokenType;
 
 
@@ -51,7 +51,7 @@ public class Parser {
     public ASTNode parse() throws Exception {
         // 如果第一个 token 值是 class 关键字，开始解析类
         if (tokens.peek().getType() == TokenType.Class) {
-            ASTNode rootNode = new NToken(NTokenType.Class, "class");
+            ASTNode rootNode = new NToken(GrammarType.Class, "class");
             compileClass(rootNode);
             return rootNode;
         }
@@ -68,7 +68,7 @@ public class Parser {
         this.tokens = tokens;
         // 如果第一个 token 值是 class 关键字，开始解析类
         if (tokens.peek().getType() == TokenType.Class) {
-            ASTNode rootNode = new NToken(NTokenType.Class, "class");
+            ASTNode rootNode = new NToken(GrammarType.Class, "class");
             compileClass(rootNode);
             return rootNode;
         }
@@ -98,7 +98,7 @@ public class Parser {
         // 可能还有0个以上个classVarDec 子树
         token = tokens.peek();
         while (token.getType() == TokenType.Static || token.getType() == TokenType.Field) {
-            ASTNode child = new NToken(NTokenType.classVarDec, "classVarDec");
+            ASTNode child = new NToken(GrammarType.classVarDec, "classVarDec");
             parent.addChild(child);
             compileClassVarDec(child);
             token = tokens.peek();
@@ -107,7 +107,7 @@ public class Parser {
         // 可能还有0个以上 subroutineDec 子树
         TokenType type = token.getType();
         while (type == TokenType.Constructor || type == TokenType.Function || type == TokenType.Method) {
-            ASTNode child = new NToken(NTokenType.subroutineDec, "subroutineDec");
+            ASTNode child = new NToken(GrammarType.subroutineDec, "subroutineDec");
             parent.addChild(child);
             compileSubroutineDec(child);
 
@@ -214,7 +214,7 @@ public class Parser {
         // 可能的 第五个子节点 'parameterList'
         token = tokens.peek();
         if (token.getType() != TokenType.RightParen) {
-            ASTNode paramChild = new NToken(NTokenType.parameterList, "parameterList");
+            ASTNode paramChild = new NToken(GrammarType.parameterList, "parameterList");
             compileParameterList(paramChild);
             parent.addChild(paramChild);
         }
@@ -228,7 +228,7 @@ public class Parser {
         }
 
         // 最后一个子节点 subroutineBody
-        ASTNode child = new NToken(NTokenType.subroutineBody, "subroutineBody");
+        ASTNode child = new NToken(GrammarType.subroutineBody, "subroutineBody");
         compileSubroutineBody(child);
         parent.addChild(child);
 
@@ -298,7 +298,7 @@ public class Parser {
         // o个以上 varDec
         token = tokens.peek();
         while (token.getType() == TokenType.Var) {
-            ASTNode child = new NToken(NTokenType.varDec, "varDec");
+            ASTNode child = new NToken(GrammarType.varDec, "varDec");
             compileVarDec(child);
             parent.addChild(child);
             token = tokens.peek();
@@ -310,27 +310,27 @@ public class Parser {
             ASTNode child;
             switch (token.getType()) {
                 case Let:
-                    child = new NToken(NTokenType.letStatement, "letStatement");
+                    child = new NToken(GrammarType.letStatement, "letStatement");
                     compileLetStatement(child);
                     parent.addChild(child);
                     break;
                 case If:
-                    child = new NToken(NTokenType.ifStatement, "ifStatement");
+                    child = new NToken(GrammarType.ifStatement, "ifStatement");
                     compileIfStatement(child);
                     parent.addChild(child);
                     break;
                 case While:
-                    child = new NToken(NTokenType.whileStatement, "whileStatement");
+                    child = new NToken(GrammarType.whileStatement, "whileStatement");
                     compileWhileStatement(child);
                     parent.addChild(child);
                     break;
                 case Do:
-                    child = new NToken(NTokenType.doStatement, "doStatement");
+                    child = new NToken(GrammarType.doStatement, "doStatement");
                     compileDoStatement(child);
                     parent.addChild(child);
                     break;
                 case Return:
-                    child = new NToken(NTokenType.returnStatement, "returnStatement");
+                    child = new NToken(GrammarType.returnStatement, "returnStatement");
                     compileReturnStatement(child);
                     parent.addChild(child);
                     break;
@@ -410,7 +410,7 @@ public class Parser {
 
         // 可能有第二个子节点 expression
         if (tokens.peek().getType() != TokenType.SemiColon) {
-            ASTNode child = new NToken(NTokenType.expression, "expression");
+            ASTNode child = new NToken(GrammarType.expression, "expression");
             parent.addChild(child);
             compileExpression(child);
         }
@@ -445,7 +445,7 @@ public class Parser {
             parent.addChild(token);
 
             if (tokens.peek().getType() != TokenType.RightParen) {
-                ASTNode child = new NToken(NTokenType.expressionList, "expressionList");
+                ASTNode child = new NToken(GrammarType.expressionList, "expressionList");
                 parent.addChild(child);
                 compileExpressionList(child);
             }
@@ -483,7 +483,7 @@ public class Parser {
 
             // expressionList
             if (tokens.peek().getType() != TokenType.RightParen) {
-                ASTNode child = new NToken(NTokenType.expressionList, "expressionList");
+                ASTNode child = new NToken(GrammarType.expressionList, "expressionList");
                 parent.addChild(child);
                 compileExpressionList(child);
             }
@@ -520,7 +520,7 @@ public class Parser {
             throw new Exception("\nwhile statement error : expected ( before " + token.getPosition());
         }
 
-        ASTNode child = new NToken(NTokenType.expression, "expression");
+        ASTNode child = new NToken(GrammarType.expression, "expression");
         parent.addChild(child);
         compileExpression(child);
 
@@ -544,27 +544,27 @@ public class Parser {
         while (token.getType() != TokenType.RightCurly) {
             switch (token.getType()) {
                 case Let:
-                    child = new NToken(NTokenType.letStatement, "letStatement");
+                    child = new NToken(GrammarType.letStatement, "letStatement");
                     compileLetStatement(child);
                     parent.addChild(child);
                     break;
                 case If:
-                    child = new NToken(NTokenType.ifStatement, "ifStatement");
+                    child = new NToken(GrammarType.ifStatement, "ifStatement");
                     compileIfStatement(child);
                     parent.addChild(child);
                     break;
                 case While:
-                    child = new NToken(NTokenType.whileStatement, "whileStatement");
+                    child = new NToken(GrammarType.whileStatement, "whileStatement");
                     compileWhileStatement(child);
                     parent.addChild(child);
                     break;
                 case Do:
-                    child = new NToken(NTokenType.doStatement, "doStatement");
+                    child = new NToken(GrammarType.doStatement, "doStatement");
                     compileDoStatement(child);
                     parent.addChild(child);
                     break;
                 case Return:
-                    child = new NToken(NTokenType.returnStatement, "returnStatement");
+                    child = new NToken(GrammarType.returnStatement, "returnStatement");
                     compileReturnStatement(child);
                     parent.addChild(child);
                     break;
@@ -597,7 +597,7 @@ public class Parser {
             throw new Exception("\nif statement error : expected ( before " + token.getPosition());
         }
 
-        ASTNode child = new NToken(NTokenType.expression, "expression");
+        ASTNode child = new NToken(GrammarType.expression, "expression");
         parent.addChild(child);
         compileExpression(child);
 
@@ -621,27 +621,27 @@ public class Parser {
         while (token.getType() != TokenType.RightCurly) {
             switch (token.getType()) {
                 case Let:
-                    child = new NToken(NTokenType.letStatement, "letStatement");
+                    child = new NToken(GrammarType.letStatement, "letStatement");
                     compileLetStatement(child);
                     parent.addChild(child);
                     break;
                 case If:
-                    child = new NToken(NTokenType.ifStatement, "ifStatement");
+                    child = new NToken(GrammarType.ifStatement, "ifStatement");
                     compileIfStatement(child);
                     parent.addChild(child);
                     break;
                 case While:
-                    child = new NToken(NTokenType.whileStatement, "whileStatement");
+                    child = new NToken(GrammarType.whileStatement, "whileStatement");
                     compileWhileStatement(child);
                     parent.addChild(child);
                     break;
                 case Do:
-                    child = new NToken(NTokenType.doStatement, "doStatement");
+                    child = new NToken(GrammarType.doStatement, "doStatement");
                     compileDoStatement(child);
                     parent.addChild(child);
                     break;
                 case Return:
-                    child = new NToken(NTokenType.returnStatement, "returnStatement");
+                    child = new NToken(GrammarType.returnStatement, "returnStatement");
                     compileReturnStatement(child);
                     parent.addChild(child);
                     break;
@@ -677,27 +677,27 @@ public class Parser {
             while (token.getType() != TokenType.RightCurly) {
                 switch (token.getType()) {
                     case Let:
-                        child = new NToken(NTokenType.letStatement, "letStatement");
+                        child = new NToken(GrammarType.letStatement, "letStatement");
                         compileLetStatement(child);
                         parent.addChild(child);
                         break;
                     case If:
-                        child = new NToken(NTokenType.ifStatement, "ifStatement");
+                        child = new NToken(GrammarType.ifStatement, "ifStatement");
                         compileIfStatement(child);
                         parent.addChild(child);
                         break;
                     case While:
-                        child = new NToken(NTokenType.whileStatement, "whileStatement");
+                        child = new NToken(GrammarType.whileStatement, "whileStatement");
                         compileWhileStatement(child);
                         parent.addChild(child);
                         break;
                     case Do:
-                        child = new NToken(NTokenType.doStatement, "doStatement");
+                        child = new NToken(GrammarType.doStatement, "doStatement");
                         compileDoStatement(child);
                         parent.addChild(child);
                         break;
                     case Return:
-                        child = new NToken(NTokenType.returnStatement, "returnStatement");
+                        child = new NToken(GrammarType.returnStatement, "returnStatement");
                         compileReturnStatement(child);
                         parent.addChild(child);
                         break;
@@ -738,7 +738,7 @@ public class Parser {
             parent.addChild(token);
 
             // expression
-            ASTNode child = new NToken(NTokenType.expression, "expression");
+            ASTNode child = new NToken(GrammarType.expression, "expression");
             parent.addChild(child);
             compileExpression(child);
 
@@ -760,7 +760,7 @@ public class Parser {
         }
 
         // expression
-        ASTNode child = new NToken(NTokenType.expression, "expression");
+        ASTNode child = new NToken(GrammarType.expression, "expression");
         parent.addChild(child);
         compileExpression(child);
 
@@ -778,7 +778,7 @@ public class Parser {
     // AST 第5层 语句中的表达式
     private void compileExpression(ASTNode parent) throws Exception {
         // 第一个结点一是一个 term
-        ASTNode child = new NToken(NTokenType.term, "term");
+        ASTNode child = new NToken(GrammarType.term, "term");
         compileTerm(child);
         parent.addChild(child);
 
@@ -793,7 +793,7 @@ public class Parser {
             parent.addChild(tokens.read());
 
             // 加入 term 子节点
-            child = new NToken(NTokenType.term, "term");
+            child = new NToken(GrammarType.term, "term");
             compileTerm(child);
             parent.addChild(child);
 
@@ -831,7 +831,7 @@ public class Parser {
 
                 // expression
                 if (tokens.peek().getType() != TokenType.RightBracket) {
-                    ASTNode child = new NToken(NTokenType.expression, "expression");
+                    ASTNode child = new NToken(GrammarType.expression, "expression");
                     compileExpression(child);
                     parent.addChild(child);
                 } else {
@@ -857,7 +857,7 @@ public class Parser {
                     parent.addChild(token);
 
                     if (tokens.peek().getType() != TokenType.RightParen) {
-                        ASTNode child = new NToken(NTokenType.expressionList, "expressionList");
+                        ASTNode child = new NToken(GrammarType.expressionList, "expressionList");
                         parent.addChild(child);
                         compileExpressionList(child);
                     }
@@ -896,7 +896,7 @@ public class Parser {
 
                     // expressionList
                     if (tokens.peek().getType() != TokenType.RightParen) {
-                        ASTNode child = new NToken(NTokenType.expressionList, "expressionList");
+                        ASTNode child = new NToken(GrammarType.expressionList, "expressionList");
                         parent.addChild(child);
                         compileExpressionList(child);
                     }
@@ -920,7 +920,7 @@ public class Parser {
             parent.addChild(token);
 
             // expression
-            ASTNode child = new NToken(NTokenType.expression, "expression");
+            ASTNode child = new NToken(GrammarType.expression, "expression");
             compileExpression(child);
             parent.addChild(child);
 
@@ -940,7 +940,7 @@ public class Parser {
             parent.addChild(token);
 
             // term
-            ASTNode child = new NToken(NTokenType.term, "term");
+            ASTNode child = new NToken(GrammarType.term, "term");
             compileTerm(child);
             parent.addChild(child);
             return;
@@ -953,14 +953,14 @@ public class Parser {
     // 第七层 表达式中的项的方法调用中的表达式列表
     private void compileExpressionList(ASTNode parent) throws Exception {
         // expression
-        ASTNode child = new NToken(NTokenType.expression, "expression");
+        ASTNode child = new NToken(GrammarType.expression, "expression");
         compileExpression(child);
         parent.addChild(child);
 
         while (tokens.peek().getType() == TokenType.Comma) {
             parent.addChild(tokens.read());
 
-            child = new NToken(NTokenType.expression, "expression");
+            child = new NToken(GrammarType.expression, "expression");
             compileExpression(child);
             parent.addChild(child);
         }

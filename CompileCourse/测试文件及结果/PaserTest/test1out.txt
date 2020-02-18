@@ -1,0 +1,508 @@
+tokens are:
+(class,Class)
+line:4	number:1
+(Main,Identifier)
+line:4	number:2
+({,LeftCurly)
+line:4	number:3
+(function,Function)
+line:5	number:1
+(void,Void)
+line:5	number:2
+(main,Identifier)
+line:5	number:3
+((,LeftParen)
+line:5	number:4
+(),RightParen)
+line:5	number:5
+({,LeftCurly)
+line:5	number:6
+(var,Var)
+line:6	number:1
+(Array,Identifier)
+line:6	number:2
+(a,Identifier)
+line:6	number:3
+(;,SemiColon)
+line:6	number:4
+(var,Var)
+line:7	number:1
+(int,Int)
+line:7	number:2
+(length,Identifier)
+line:7	number:3
+(;,SemiColon)
+line:7	number:4
+(var,Var)
+line:8	number:1
+(int,Int)
+line:8	number:2
+(i,Identifier)
+line:8	number:3
+(,,Comma)
+line:8	number:4
+(sum,Identifier)
+line:8	number:5
+(;,SemiColon)
+line:8	number:6
+(let,Let)
+line:10	number:1
+(length,Identifier)
+line:10	number:2
+(=,Assignment)
+line:10	number:3
+(Keyboard,Identifier)
+line:10	number:4
+(.,Dot)
+line:10	number:5
+(readInt,Identifier)
+line:10	number:6
+((,LeftParen)
+line:10	number:7
+("HOW MANY NUMBERS? ",StringLiteral)
+line:10	number:8
+(),RightParen)
+line:10	number:9
+(;,SemiColon)
+line:10	number:10
+(let,Let)
+line:11	number:1
+(a,Identifier)
+line:11	number:2
+(=,Assignment)
+line:11	number:3
+(Array,Identifier)
+line:11	number:4
+(.,Dot)
+line:11	number:5
+(new,Identifier)
+line:11	number:6
+((,LeftParen)
+line:11	number:7
+(length,Identifier)
+line:11	number:8
+(),RightParen)
+line:11	number:9
+(;,SemiColon)
+line:11	number:10
+(let,Let)
+line:12	number:1
+(i,Identifier)
+line:12	number:2
+(=,Assignment)
+line:12	number:3
+(0,IntLiteral)
+line:12	number:4
+(;,SemiColon)
+line:12	number:5
+(while,While)
+line:14	number:1
+((,LeftParen)
+line:14	number:2
+(i,Identifier)
+line:14	number:3
+(<,LT)
+line:14	number:4
+(length,Identifier)
+line:14	number:5
+(),RightParen)
+line:14	number:6
+({,LeftCurly)
+line:14	number:7
+(let,Let)
+line:15	number:1
+(a,Identifier)
+line:15	number:2
+([,LeftBracket)
+line:15	number:3
+(i,Identifier)
+line:15	number:4
+(],RightBracket)
+line:15	number:5
+(=,Assignment)
+line:15	number:6
+(Keyboard,Identifier)
+line:15	number:7
+(.,Dot)
+line:15	number:8
+(readInt,Identifier)
+line:15	number:9
+((,LeftParen)
+line:15	number:10
+("ENTER THE NEXT NUMBER: ",StringLiteral)
+line:15	number:11
+(),RightParen)
+line:15	number:12
+(;,SemiColon)
+line:15	number:13
+(let,Let)
+line:16	number:1
+(i,Identifier)
+line:16	number:2
+(=,Assignment)
+line:16	number:3
+(i,Identifier)
+line:16	number:4
+(+,Plus)
+line:16	number:5
+(1,IntLiteral)
+line:16	number:6
+(;,SemiColon)
+line:16	number:7
+(},RightCurly)
+line:17	number:1
+(let,Let)
+line:19	number:1
+(i,Identifier)
+line:19	number:2
+(=,Assignment)
+line:19	number:3
+(0,IntLiteral)
+line:19	number:4
+(;,SemiColon)
+line:19	number:5
+(let,Let)
+line:20	number:1
+(sum,Identifier)
+line:20	number:2
+(=,Assignment)
+line:20	number:3
+(0,IntLiteral)
+line:20	number:4
+(;,SemiColon)
+line:20	number:5
+(while,While)
+line:22	number:1
+((,LeftParen)
+line:22	number:2
+(i,Identifier)
+line:22	number:3
+(<,LT)
+line:22	number:4
+(length,Identifier)
+line:22	number:5
+(),RightParen)
+line:22	number:6
+({,LeftCurly)
+line:22	number:7
+(let,Let)
+line:23	number:1
+(sum,Identifier)
+line:23	number:2
+(=,Assignment)
+line:23	number:3
+(sum,Identifier)
+line:23	number:4
+(+,Plus)
+line:23	number:5
+(a,Identifier)
+line:23	number:6
+([,LeftBracket)
+line:23	number:7
+(i,Identifier)
+line:23	number:8
+(],RightBracket)
+line:23	number:9
+(;,SemiColon)
+line:23	number:10
+(let,Let)
+line:24	number:1
+(i,Identifier)
+line:24	number:2
+(=,Assignment)
+line:24	number:3
+(i,Identifier)
+line:24	number:4
+(+,Plus)
+line:24	number:5
+(1,IntLiteral)
+line:24	number:6
+(;,SemiColon)
+line:24	number:7
+(},RightCurly)
+line:25	number:1
+(do,Do)
+line:27	number:1
+(Output,Identifier)
+line:27	number:2
+(.,Dot)
+line:27	number:3
+(printString,Identifier)
+line:27	number:4
+((,LeftParen)
+line:27	number:5
+("THE AVERAGE IS: ",StringLiteral)
+line:27	number:6
+(),RightParen)
+line:27	number:7
+(;,SemiColon)
+line:27	number:8
+(do,Do)
+line:28	number:1
+(Output,Identifier)
+line:28	number:2
+(.,Dot)
+line:28	number:3
+(printInt,Identifier)
+line:28	number:4
+((,LeftParen)
+line:28	number:5
+(sum,Identifier)
+line:28	number:6
+(/,DIV)
+line:28	number:6
+(length,Identifier)
+line:28	number:7
+(),RightParen)
+line:28	number:8
+(;,SemiColon)
+line:28	number:9
+(do,Do)
+line:29	number:1
+(Output,Identifier)
+line:29	number:2
+(.,Dot)
+line:29	number:3
+(println,Identifier)
+line:29	number:4
+((,LeftParen)
+line:29	number:5
+(),RightParen)
+line:29	number:6
+(;,SemiColon)
+line:29	number:7
+(return,Return)
+line:31	number:1
+(;,SemiColon)
+line:31	number:2
+(},RightCurly)
+line:32	number:1
+(},RightCurly)
+line:33	number:1
+compile let statement success
+compile let statement success
+compile let statement success
+compile let statement success
+compile let statement success
+compile while statement finished
+compile let statement success
+compile let statement success
+compile let statement success
+compile let statement success
+compile while statement finished
+compile do statement success
+compile do statement success
+compile do statement success
+compile return statement success
+compile subroutineBody success
+compile subroutineDec  success
+compile class file success
+the ast is 
+Class class
+	Class class
+	Identifier Main
+	LeftCurly {
+	subroutineDec subroutineDec
+		Function function
+		Void void
+		Identifier main
+		LeftParen (
+		RightParen )
+		subroutineBody subroutineBody
+			LeftCurly {
+			varDec varDec
+				Var var
+				Identifier Array
+				Identifier a
+				SemiColon ;
+			varDec varDec
+				Var var
+				Int int
+				Identifier length
+				SemiColon ;
+			varDec varDec
+				Var var
+				Int int
+				Identifier i
+				Comma ,
+				Identifier sum
+				SemiColon ;
+			letStatement letStatement
+				Let let
+				Identifier length
+				Assignment =
+				expression expression
+					term term
+						Identifier Keyboard
+						Dot .
+						Identifier readInt
+						LeftParen (
+						expressionList expressionList
+							expression expression
+								term term
+									StringLiteral "HOW MANY NUMBERS? "
+						RightParen )
+				SemiColon ;
+			letStatement letStatement
+				Let let
+				Identifier a
+				Assignment =
+				expression expression
+					term term
+						Identifier Array
+						Dot .
+						Identifier new
+						LeftParen (
+						expressionList expressionList
+							expression expression
+								term term
+									Identifier length
+						RightParen )
+				SemiColon ;
+			letStatement letStatement
+				Let let
+				Identifier i
+				Assignment =
+				expression expression
+					term term
+						IntLiteral 0
+				SemiColon ;
+			whileStatement whileStatement
+				While while
+				LeftParen (
+				expression expression
+					term term
+						Identifier i
+					LT <
+					term term
+						Identifier length
+				RightParen )
+				LeftCurly {
+				letStatement letStatement
+					Let let
+					Identifier a
+					LeftBracket [
+					expression expression
+						term term
+							Identifier i
+					RightBracket ]
+					Assignment =
+					expression expression
+						term term
+							Identifier Keyboard
+							Dot .
+							Identifier readInt
+							LeftParen (
+							expressionList expressionList
+								expression expression
+									term term
+										StringLiteral "ENTER THE NEXT NUMBER: "
+							RightParen )
+					SemiColon ;
+				letStatement letStatement
+					Let let
+					Identifier i
+					Assignment =
+					expression expression
+						term term
+							Identifier i
+						Plus +
+						term term
+							IntLiteral 1
+					SemiColon ;
+				RightCurly }
+			letStatement letStatement
+				Let let
+				Identifier i
+				Assignment =
+				expression expression
+					term term
+						IntLiteral 0
+				SemiColon ;
+			letStatement letStatement
+				Let let
+				Identifier sum
+				Assignment =
+				expression expression
+					term term
+						IntLiteral 0
+				SemiColon ;
+			whileStatement whileStatement
+				While while
+				LeftParen (
+				expression expression
+					term term
+						Identifier i
+					LT <
+					term term
+						Identifier length
+				RightParen )
+				LeftCurly {
+				letStatement letStatement
+					Let let
+					Identifier sum
+					Assignment =
+					expression expression
+						term term
+							Identifier sum
+						Plus +
+						term term
+							Identifier a
+							LeftBracket [
+							expression expression
+								term term
+									Identifier i
+							RightBracket ]
+					SemiColon ;
+				letStatement letStatement
+					Let let
+					Identifier i
+					Assignment =
+					expression expression
+						term term
+							Identifier i
+						Plus +
+						term term
+							IntLiteral 1
+					SemiColon ;
+				RightCurly }
+			doStatement doStatement
+				Do do
+				Identifier Output
+				Dot .
+				Identifier printString
+				LeftParen (
+				expressionList expressionList
+					expression expression
+						term term
+							StringLiteral "THE AVERAGE IS: "
+				RightParen )
+				SemiColon ;
+			doStatement doStatement
+				Do do
+				Identifier Output
+				Dot .
+				Identifier printInt
+				LeftParen (
+				expressionList expressionList
+					expression expression
+						term term
+							Identifier sum
+						DIV /
+						term term
+							Identifier length
+				RightParen )
+				SemiColon ;
+			doStatement doStatement
+				Do do
+				Identifier Output
+				Dot .
+				Identifier println
+				LeftParen (
+				RightParen )
+				SemiColon ;
+			returnStatement returnStatement
+				Return return
+				SemiColon ;
+			RightCurly }
+	RightCurly }

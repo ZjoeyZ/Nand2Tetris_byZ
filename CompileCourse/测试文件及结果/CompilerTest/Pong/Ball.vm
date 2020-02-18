@@ -1,0 +1,530 @@
+function Ball.new 0
+// 分配内存 ->
+push constant 15
+call Memory.alloc 1
+pop pointer 0
+// let 赋值语句 ->
+push argument 0
+pop this 0
+// let 赋值语句 ->
+push argument 1
+pop this 1
+// let 赋值语句 ->
+push argument 2
+pop this 10
+// let 赋值语句 ->
+push argument 3
+push constant 6
+sub
+pop this 11
+// let 赋值语句 ->
+push argument 4
+pop this 12
+// let 赋值语句 ->
+push argument 5
+push constant 6
+sub
+pop this 13
+// let 赋值语句 ->
+push constant 0
+pop this 14
+// do 语句 ->
+push pointer 0
+call Ball.show 1
+pop temp 0
+// return 语句 ->
+push pointer 0
+return
+function Ball.dispose 0
+push argument 0
+pop pointer 0
+// do 语句 ->
+push pointer 0
+call Memory.deAlloc 1
+pop temp 0
+// return 语句 ->
+push constant 0
+return
+function Ball.show 0
+push argument 0
+pop pointer 0
+// do 语句 ->
+push constant 1
+neg
+call Screen.setColor 1
+pop temp 0
+// do 语句 ->
+push pointer 0
+call Ball.draw 1
+pop temp 0
+// return 语句 ->
+push constant 0
+return
+function Ball.hide 0
+push argument 0
+pop pointer 0
+// do 语句 ->
+push constant 0
+call Screen.setColor 1
+pop temp 0
+// do 语句 ->
+push pointer 0
+call Ball.draw 1
+pop temp 0
+// return 语句 ->
+push constant 0
+return
+function Ball.draw 0
+push argument 0
+pop pointer 0
+// do 语句 ->
+push this 0
+push this 1
+push this 0
+push constant 5
+add
+push this 1
+push constant 5
+add
+call Screen.drawRectangle 4
+pop temp 0
+// return 语句 ->
+push constant 0
+return
+function Ball.getLeft 0
+push argument 0
+pop pointer 0
+// return 语句 ->
+push this 0
+return
+function Ball.getRight 0
+push argument 0
+pop pointer 0
+// return 语句 ->
+push this 0
+push constant 5
+add
+return
+function Ball.setDestination 3
+push argument 0
+pop pointer 0
+// let 赋值语句 ->
+push argument 1
+push this 0
+sub
+pop this 2
+// let 赋值语句 ->
+push argument 2
+push this 1
+sub
+pop this 3
+// let 赋值语句 ->
+push this 2
+call Math.abs 1
+pop local 0
+// let 赋值语句 ->
+push this 3
+call Math.abs 1
+pop local 1
+// let 赋值语句 ->
+push local 0
+push local 1
+lt
+pop this 7
+// if 语句 ->
+push this 7
+not
+if-goto L0
+// let 赋值语句 ->
+push local 0
+pop local 2
+// let 赋值语句 ->
+push local 1
+pop local 0
+// let 赋值语句 ->
+push local 2
+pop local 1
+// let 赋值语句 ->
+push this 1
+push argument 2
+lt
+pop this 8
+// let 赋值语句 ->
+push this 0
+push argument 1
+lt
+pop this 9
+goto L1
+label L0
+// let 赋值语句 ->
+push this 0
+push argument 1
+lt
+pop this 8
+// let 赋值语句 ->
+push this 1
+push argument 2
+lt
+pop this 9
+label L1
+// let 赋值语句 ->
+push constant 2
+push local 1
+call Math.multiply 2
+push local 0
+sub
+pop this 4
+// let 赋值语句 ->
+push constant 2
+push local 1
+call Math.multiply 2
+pop this 5
+// let 赋值语句 ->
+push constant 2
+push local 1
+push local 0
+sub
+call Math.multiply 2
+pop this 6
+// return 语句 ->
+push constant 0
+return
+function Ball.move 0
+push argument 0
+pop pointer 0
+// do 语句 ->
+push pointer 0
+call Ball.hide 1
+pop temp 0
+// if 语句 ->
+push this 4
+push constant 0
+lt
+not
+if-goto L2
+// let 赋值语句 ->
+push this 4
+push this 5
+add
+pop this 4
+goto L3
+label L2
+// let 赋值语句 ->
+push this 4
+push this 6
+add
+pop this 4
+// if 语句 ->
+push this 9
+not
+if-goto L4
+// if 语句 ->
+push this 7
+not
+if-goto L6
+// let 赋值语句 ->
+push this 0
+push constant 4
+add
+pop this 0
+goto L7
+label L6
+// let 赋值语句 ->
+push this 1
+push constant 4
+add
+pop this 1
+label L7
+goto L5
+label L4
+// if 语句 ->
+push this 7
+not
+if-goto L8
+// let 赋值语句 ->
+push this 0
+push constant 4
+sub
+pop this 0
+goto L9
+label L8
+// let 赋值语句 ->
+push this 1
+push constant 4
+sub
+pop this 1
+label L9
+label L5
+label L3
+// if 语句 ->
+push this 8
+not
+if-goto L10
+// if 语句 ->
+push this 7
+not
+if-goto L12
+// let 赋值语句 ->
+push this 1
+push constant 4
+add
+pop this 1
+goto L13
+label L12
+// let 赋值语句 ->
+push this 0
+push constant 4
+add
+pop this 0
+label L13
+goto L11
+label L10
+// if 语句 ->
+push this 7
+not
+if-goto L14
+// let 赋值语句 ->
+push this 1
+push constant 4
+sub
+pop this 1
+goto L15
+label L14
+// let 赋值语句 ->
+push this 0
+push constant 4
+sub
+pop this 0
+label L15
+label L11
+// if 语句 ->
+push this 0
+push this 10
+gt
+not
+not
+if-goto L16
+// let 赋值语句 ->
+push constant 1
+pop this 14
+// let 赋值语句 ->
+push this 10
+pop this 0
+goto L17
+label L16
+label L17
+// if 语句 ->
+push this 0
+push this 11
+lt
+not
+not
+if-goto L18
+// let 赋值语句 ->
+push constant 2
+pop this 14
+// let 赋值语句 ->
+push this 11
+pop this 0
+goto L19
+label L18
+label L19
+// if 语句 ->
+push this 1
+push this 12
+gt
+not
+not
+if-goto L20
+// let 赋值语句 ->
+push constant 3
+pop this 14
+// let 赋值语句 ->
+push this 12
+pop this 1
+goto L21
+label L20
+label L21
+// if 语句 ->
+push this 1
+push this 13
+lt
+not
+not
+if-goto L22
+// let 赋值语句 ->
+push constant 4
+pop this 14
+// let 赋值语句 ->
+push this 13
+pop this 1
+goto L23
+label L22
+label L23
+// do 语句 ->
+push pointer 0
+call Ball.show 1
+pop temp 0
+// return 语句 ->
+push this 14
+return
+function Ball.bounce 5
+push argument 0
+pop pointer 0
+// let 赋值语句 ->
+push this 2
+push constant 10
+call Math.divide 2
+pop local 2
+// let 赋值语句 ->
+push this 3
+push constant 10
+call Math.divide 2
+pop local 3
+// if 语句 ->
+push argument 1
+push constant 0
+eq
+not
+if-goto L24
+// let 赋值语句 ->
+push constant 10
+pop local 4
+goto L25
+label L24
+// if 语句 ->
+push this 2
+push constant 0
+lt
+not
+push argument 1
+push constant 1
+eq
+and
+push this 2
+push constant 0
+lt
+push argument 1
+push constant 1
+neg
+eq
+and
+or
+not
+if-goto L26
+// let 赋值语句 ->
+push constant 20
+pop local 4
+goto L27
+label L26
+// let 赋值语句 ->
+push constant 5
+pop local 4
+label L27
+label L25
+// if 语句 ->
+push this 14
+push constant 1
+eq
+not
+if-goto L28
+// let 赋值语句 ->
+push constant 506
+pop local 0
+// let 赋值语句 ->
+push local 3
+push constant 50
+neg
+call Math.multiply 2
+push local 2
+call Math.divide 2
+pop local 1
+// let 赋值语句 ->
+push this 1
+push local 1
+push local 4
+call Math.multiply 2
+add
+pop local 1
+goto L29
+label L28
+// if 语句 ->
+push this 14
+push constant 2
+eq
+not
+if-goto L30
+// let 赋值语句 ->
+push constant 0
+pop local 0
+// let 赋值语句 ->
+push local 3
+push constant 50
+call Math.multiply 2
+push local 2
+call Math.divide 2
+pop local 1
+// let 赋值语句 ->
+push this 1
+push local 1
+push local 4
+call Math.multiply 2
+add
+pop local 1
+goto L31
+label L30
+// if 语句 ->
+push this 14
+push constant 3
+eq
+not
+if-goto L32
+// let 赋值语句 ->
+push constant 250
+pop local 1
+// let 赋值语句 ->
+push local 2
+push constant 25
+neg
+call Math.multiply 2
+push local 3
+call Math.divide 2
+pop local 0
+// let 赋值语句 ->
+push this 0
+push local 0
+push local 4
+call Math.multiply 2
+add
+pop local 0
+goto L33
+label L32
+// let 赋值语句 ->
+push constant 0
+pop local 1
+// let 赋值语句 ->
+push local 2
+push constant 25
+call Math.multiply 2
+push local 3
+call Math.divide 2
+pop local 0
+// let 赋值语句 ->
+push this 0
+push local 0
+push local 4
+call Math.multiply 2
+add
+pop local 0
+label L33
+label L31
+label L29
+// do 语句 ->
+push pointer 0
+push local 0
+push local 1
+call Ball.setDestination 3
+pop temp 0
+// return 语句 ->
+push constant 0
+return

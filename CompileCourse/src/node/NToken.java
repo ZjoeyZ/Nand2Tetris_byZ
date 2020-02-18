@@ -1,9 +1,8 @@
 package node;
 
-import type.NTokenType;
+import type.GrammarType;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -12,10 +11,10 @@ import java.util.List;
 public class NToken extends ASTNode {
     public List<ASTNode> children = new ArrayList<ASTNode>();
 
-    public NTokenType type = null;
+    public GrammarType type = null;
     String text = null;
 
-    public NToken(NTokenType type, String text) {
+    public NToken(GrammarType type, String text) {
         this.type = type;
         this.text = text;
     }
@@ -24,7 +23,7 @@ public class NToken extends ASTNode {
         return children;
     }
 
-    public NTokenType getType() {
+    public GrammarType getType() {
         return type;
     }
 

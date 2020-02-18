@@ -3,16 +3,64 @@ import node.Token;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 
 public class REPL {
+    /**
+     * REPL for compiler
+     * @param args
+     */
+    public static void main(String[] args) {
+        int bracketNum = 0;
+        System.out.println("Welcome to Jack Compiler !");
+
+        Tokenizer tokenizer = new Tokenizer();
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+        StringBuilder scriptText = new StringBuilder();
+        System.out.println("Please input a Class source code");
+        System.out.print("\n>");   //提示符
+
+        while (true) {
+            try {
+                String line = reader.readLine().trim();
+                if (line.equals("exit();")) {
+                    System.out.println("good bye!");
+                    break;
+                }
+                scriptText.append(line).append("\n");
+                if (line.contains("{")) {
+                    bracketNum++;
+                }
+                if (line.contains("}")) {
+                    bracketNum--;
+                    if (bracketNum == 0) {
+                        TokenReader tokens = tokenizer.tokenize(scriptText.toString());
+                        Compiler compiler = new Compiler(tokens);
+                        // 开始编译
+                        compiler.compile();
+
+                        System.out.print("\n>");   //提示符
+                        scriptText = new StringBuilder();
+                    }
+                }
+
+            } catch (Exception e) {
+                // e.printStackTrace();
+
+                System.out.println(e.getLocalizedMessage());
+                System.out.print("\n>");   //提示符
+                scriptText = new StringBuilder();
+            }
+        }
+    }
+
     /**
      * 实现一个简单的REPL
      * 运行后在命令行中 输入 源代码
      * 输出 词法单位，语法树，
      * 比如：运行程序后，可以直接把 in.txt 或者 测试文件夹 里面的源代码拷贝到命令行，可以观察结果
      */
-    public static void main(String[] args) {
+    public static void main1(String[] args) {
         int bracketNum = 0;
         System.out.println("parser to generate AST tree !");
 
@@ -62,5 +110,4 @@ public class REPL {
             }
         }
     }
-
 }

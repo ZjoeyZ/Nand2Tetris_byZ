@@ -1,0 +1,123 @@
+function Main.main 1
+// do 语句 ->
+push constant 8001
+push constant 16
+push constant 1
+neg
+call Main.fillMemory 3
+// let 赋值语句 ->
+push constant 8000
+call Memory.peek 1
+pop local 0
+// do 语句 ->
+push local 0
+call Main.convert 1
+// return 语句 ->
+push constant 0
+return
+function Main.convert 3
+// let 赋值语句 ->
+push constant 1
+neg
+pop local 2
+// while 语句 ->
+label L0
+push local 2
+not
+if-goto L1
+// let 赋值语句 ->
+push local 1
+push constant 1
+add
+pop local 1
+// let 赋值语句 ->
+push local 0
+call Main.nextMask 1
+pop local 0
+// if 语句 ->
+push local 1
+push constant 16
+gt
+not
+not
+if-goto L2
+// if 语句 ->
+push argument 0
+push local 0
+and
+push constant 0
+eq
+not
+not
+if-goto L4
+// do 语句 ->
+push constant 8000
+push local 1
+add
+push constant 1
+call Memory.poke 2
+goto L5
+label L4
+// do 语句 ->
+push constant 8000
+push local 1
+add
+push constant 0
+call Memory.poke 2
+label L5
+goto L3
+label L2
+// let 赋值语句 ->
+push constant 0
+pop local 2
+label L3
+goto L0
+label L1
+// return 语句 ->
+push constant 0
+return
+function Main.nextMask 0
+// if 语句 ->
+push argument 0
+push constant 0
+eq
+not
+if-goto L6
+// return 语句 ->
+push constant 1
+return
+goto L7
+label L6
+// return 语句 ->
+push argument 0
+push constant 2
+call Math.multiply 2
+return
+label L7
+function Main.fillMemory 0
+// while 语句 ->
+label L8
+push argument 1
+push constant 0
+gt
+not
+if-goto L9
+// do 语句 ->
+push argument 0
+push argument 2
+call Memory.poke 2
+// let 赋值语句 ->
+push argument 1
+push constant 1
+sub
+pop argument 1
+// let 赋值语句 ->
+push argument 0
+push constant 1
+add
+pop argument 0
+goto L8
+label L9
+// return 语句 ->
+push constant 0
+return
